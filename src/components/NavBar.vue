@@ -4,8 +4,21 @@
     <div class="navbar-brand">
       <div class="navbar-item">
         <img src="../assets/logo.png" alt="logo">
+      </div>
+      <div class="navbar-item">
         <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
+      </div>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu is-active">
+      <div class="navbar-end">
+          <div class="navbar-item">
+            <router-link to="/about">About</router-link>
+          </div>
       </div>
     </div>
   </nav>
