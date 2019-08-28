@@ -1,5 +1,14 @@
 <template>
-  <div class="home">
-    <p>router view for About!</p>
+  <div>
+    <PageTwo/>
   </div>
 </template>
+<script>
+import PageTwo from '../components/PageTwo'
+
+export default {
+  components: {
+    PageTwo
+  }
+}
+</script>

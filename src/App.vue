@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <NavBar/>
+    <NavMenu/>
     <router-view/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import NavBar from '@/components/NavBar.vue'
+import NavBar from '@/components/NavBar'
+import NavMenu from '@/components/NavMenu'
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    NavMenu
   }
 }
 </script>
@@ -80,34 +83,24 @@ START rules that will come AFTER Bulma's variables
 *********************************************************************/
 
 // My utility classes
-
-.min-height-full {
+.my-min-height-full {
     min-height: 90vh;
 }
 
-.max-height-half {
+.my-max-height-half {
     max-height: 70vh;
 }
 
-.is-background-image {
+.my-background-image {
     background-image: url("../src/assets/background-blue-solid.png");
 }
 
-// Notification styles
+.my-modal-close:focus {
+    outline: 2px solid $light-blue;
+}
+
+// Modifying Bulma's classes
 .notification {
     background-color: $light-blue;
-}
-
-// Side-menu styles
-.side-menu {
-    padding-left: 1rem;
-    background-color: $light-grey;
-    border-radius: 3px;
-    z-index: 1;
-}
-
-// Modal styles
-.modal-close:focus {
-    outline: 2px solid $light-blue;
 }
 </style>

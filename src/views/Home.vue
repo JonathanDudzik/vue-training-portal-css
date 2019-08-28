@@ -1,5 +1,15 @@
 <template>
-  <div class="home">
-    <p>router view for home!</p>
+  <div>
+    <PageOne/>
   </div>
 </template>
+
+<script>
+import PageOne from '../components/PageOne'
+
+export default {
+  components: {
+    PageOne
+  }
+}
+</script>
