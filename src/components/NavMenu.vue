@@ -1,21 +1,18 @@
 <template>
-    <div>
-        <section class="my-side-menu" ref="navMenuBody">
-            <nav tabindex="0">
-                <p class="menu-label">Contents</p>
-                <ul class="menu-list">
-                    <li><router-link to="/">Start Here</router-link></li>
-                    <li><router-link to="/about" class="is-active">Curriculum Vitae</router-link></li>
-                    <li><router-link to="/principles">Design Principles</router-link></li>
-                    <li><router-link to="/projects">Projects</router-link></li>
-                </ul>
-                <div class="container my-side-menu-control">
-                    <p @click="toggleSideMenu" class="is-size-1" v-html="sideMenuControlIcon">{{  }}</p>
-                </div>
-            </nav>
-
-        </section>
-    </div>
+    <section class="my-side-menu" ref="navMenuBody">
+        <nav>
+            <p class="menu-label">Contents</p>
+            <ul class="menu-list">
+                <li><router-link to="/">Start Here</router-link></li>
+                <li><router-link to="/about" class="is-active">Curriculum Vitae</router-link></li>
+                <li><router-link to="/principles">Design Principles</router-link></li>
+                <li><router-link to="/projects">Projects</router-link></li>
+            </ul>
+            <div class="container my-side-menu-control">
+                <p @click="toggleSideMenu" class="is-size-1" v-html="sideMenuControlIcon"></p>
+            </div>
+        </nav>
+    </section>
 </template>
 
 <script>
@@ -36,7 +33,7 @@
                 const { navMenuBody } = this.$refs
                 if(this.hidden == false) {
                     this.sideMenuControlIcon = "&#10092;"
-                    TweenMax.to(navMenuBody, .5, { ease: Power2.easeOut, left: ".5%"}).play();
+                    TweenMax.to(navMenuBody, .5, { ease: Power2.easeOut, left: "0%"}).play();
                 }
                 if(this.hidden == true) {
                     this.sideMenuControlIcon = "&#10093;"
@@ -55,12 +52,14 @@
     // My utility styles
     .my-side-menu {
         position: absolute;
-        top: 25%;
+        top: 0%;
         left: -30%;
         width: 30%;
+        height: 100%;
+        padding: 10% 0 0 1%;
         background-color: $light-grey;
         border-radius: 3px;
-        z-index: 1;
+        z-index: 9000;
     }
 
     .my-side-menu-control {
