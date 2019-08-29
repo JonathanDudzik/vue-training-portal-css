@@ -1,7 +1,7 @@
 <template>
     <div>
-        <section>
-            <nav class="my-side-menu" tabindex="0" ref="navMenuBody">
+        <section class="my-side-menu" ref="navMenuBody">
+            <nav tabindex="0">
                 <p class="menu-label">Contents</p>
                 <ul class="menu-list">
                     <li><router-link to="/">Start Here</router-link></li>
@@ -9,7 +9,11 @@
                     <li><router-link to="/principles">Design Principles</router-link></li>
                     <li><router-link to="/projects">Projects</router-link></li>
                 </ul>
+                <div class="container my-side-menu-control">
+                    <p @click="toggleSideMenu" class="is-size-1" v-html="sideMenuControlIcon">{{  }}</p>
+                </div>
             </nav>
+
         </section>
     </div>
 </template>
@@ -22,13 +26,23 @@
         data: function () {
             return {
                 hidden: true,
+                sideMenuControlIcon: "&#10093;"
             }
         },
 
-        mounted() { 
-            const { navMenuBody, navMenuTab } = this.$refs
-            const objects = [navMenuBody, navMenuTab];    
-            TweenMax.to(objects, 3, { left: "20%", top: "10%" }) 
+        methods: {
+            toggleSideMenu: function(e) {
+                this.hidden = !this.hidden;
+                const { navMenuBody } = this.$refs
+                if(this.hidden == false) {
+                    this.sideMenuControlIcon = "&#10092;"
+                    TweenMax.to(navMenuBody, .5, { ease: Power2.easeOut, left: ".5%"}).play();
+                }
+                if(this.hidden == true) {
+                    this.sideMenuControlIcon = "&#10093;"
+                    TweenMax.to(navMenuBody, .5, { ease: Power2.easeOut, left: "-30%"}).play()
+                }
+            }
         } 
     } 
 
@@ -41,10 +55,17 @@
     // My utility styles
     .my-side-menu {
         position: absolute;
-        top: 20%;
-        left: -100%;
+        top: 25%;
+        left: -30%;
+        width: 30%;
         background-color: $light-grey;
         border-radius: 3px;
         z-index: 1;
+    }
+
+    .my-side-menu-control {
+        position: absolute;
+        top: 30%;
+        left: 105%;
     }
 </style>
