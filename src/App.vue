@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <NavBar/>
     <NavMenu/>
-    <router-view/>
+    <div class="myMainContent">
+      <NavBar/>
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -77,6 +79,8 @@ END rules that will come before Bulma's variables
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/grid/columns.sass";
 @import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/elements/progress.sass";
+node_modules\bulma\sass\elements\progress.sass
 
 /******************************************************************** 
 START rules that will come AFTER Bulma's variables 
@@ -84,19 +88,23 @@ START rules that will come AFTER Bulma's variables
 
 // My utility classes
 .my-min-height-full {
-    min-height: 90vh;
+  min-height: 90vh;
 }
 
 .my-max-height-half {
-    max-height: 70vh;
+  max-height: 70vh;
 }
 
 .my-background-image {
-    background-image: url("../src/assets/background-blue-solid.png");
+  background-image: url("../src/assets/background-blue-solid.png");
 }
 
 .my-modal-close:focus {
-    outline: 2px solid $light-blue;
+  outline: 2px solid $light-blue;
+}
+
+.myMainContent {
+  margin-right: 8%;
 }
 
 // Modifying Bulma's classes
