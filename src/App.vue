@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <NavMenu/>
-    <div class="myMainContent">
       <NavBar/>
       <router-view/>
-    </div>
   </div>
 </template>
 
@@ -101,10 +99,6 @@ START rules that will come AFTER Bulma's variables
 
 .my-modal-close:focus {
   outline: 2px solid $light-blue;
-}
-
-.myMainContent {
-  margin-right: 8%;
 }
 
 // Modifying Bulma's classes
