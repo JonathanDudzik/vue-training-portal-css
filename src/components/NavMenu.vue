@@ -1,12 +1,12 @@
 <template>
     <div>
         <transition name="fade">
-            <section v-show="mainMenuClosed" class="my-main-menu" ref="mainMenu">
+            <section v-show="mainMenuOpener" class="my-main-menu" ref="mainMenu">
                 <nav class="section">
                     <div class="container">
                         <dl class="js-badger-accordion">
                             <dt>
-                                <button class=" button js-badger-accordion-header">
+                                <button class=" button js-badger-accordion-header" @click="controlMenu">
                                     Header Content
                                 </button>
                             </dt>
@@ -35,18 +35,22 @@
     export default {
         data: function () {
             return {
-                mainMenuClosed: false,
                 mainMenuControlText: "Main Menu",
             }
         },
-        mounted: function () {  
+        computed: {
+            mainMenuOpener () {
+                return this.$store.state.mainMenuOpen;
+            }
+        },
+        updated: function () {  
             const accordionDomNode = document.querySelector('.js-badger-accordion');
             const accordion = new BadgerAccordion(accordionDomNode);
         },
         methods: {
             controlMenu: function(e) {
-                const { mainMenu } = this.$refs
-                this.mainMenuClosed = !this.mainMenuClosed;
+                console.log(this.mainMenuOpener);
+                console.log(this.$store.state.mainMenuOpen);
             }
         } 
     } 
@@ -62,10 +66,10 @@
     // My utility styles
     .my-main-menu {
         position: absolute;
-        top: 0%;
+        top: 10%;
         right: 0%;
-        width: 100vw;
-        height: 100%;
+        width: 10vw;
+        height: 90%;
         background-color: $light-grey;
         z-index: 8000;
     }

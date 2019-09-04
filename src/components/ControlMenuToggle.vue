@@ -3,7 +3,7 @@
         <span 
             ref="MenuToggler"
             class="is-size-1"
-            @click="controlMenu"
+            @click="openMenu"
         >
             &#9776;
         </span>
@@ -13,9 +13,9 @@
 <script>
 export default {
     methods: {
-        controlMenu: function(e) {
-            const { MenuToggler } = this.$refs
-            console.log(this.$refs)
+        openMenu () {
+            this.$store.state.mainMenuOpen = !this.$store.state.mainMenuOpen;
+            console.log(this.$store.state.mainMenuOpen);
         }
     }
 }
