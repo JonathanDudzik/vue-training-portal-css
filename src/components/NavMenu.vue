@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div class="my-menu-toggler has-text-white is-paddingless" @click="controlMenu">
-            <span class="is-size-1">&#9776;</span>
-        </div>
         <transition name="fade">
             <section v-show="mainMenuClosed" class="my-main-menu" ref="mainMenu">
                 <nav class="section">
@@ -33,14 +30,12 @@
 </template>
 
 <script>
-    import TweenMax from 'gsap/src/minified/TweenMax.min.js'
     import BadgerAccordion from '../../node_modules/badger-accordion/dist/badger-accordion';
-
     
     export default {
         data: function () {
             return {
-                mainMenuClosed: true,
+                mainMenuClosed: false,
                 mainMenuControlText: "Main Menu",
             }
         },
@@ -73,13 +68,6 @@
         height: 100%;
         background-color: $light-grey;
         z-index: 8000;
-    }
-
-    .my-menu-toggler {
-        position: absolute;
-        top: 0%;
-        right: 2%;
-        z-index: 9000;
     }
 
     .fade-enter-active, .fade-leave-active {
