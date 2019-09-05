@@ -31,11 +31,8 @@ export default {
 
 <style lang="scss">
   /******************************************************************** 
-  START rules that will come before Bulma's variables 
+  Rules that will come before Bulma's variables 
   *********************************************************************/
-  @charset "utf-8";
-  @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-
   // Setting local color scheme
   $white: #fff;
   $black: #000;
@@ -48,24 +45,22 @@ export default {
   // Setting Bulma variables
   $primary: $dark-blue;
   $light: $light-grey;
+  $menu-item-hover-background-color: hsl(0, 0%, 71%);
   $family-primary: "TransportNew", Arial, "Helvetica Neue", Helvetica, sans-serif;
 
+  // Utilitie classes
+  .my-m-b-72 {
+    margin-top: 92px;
+  }
   /******************************************************************** 
-  END rules that will come before Bulma's variables 
+  Imports: pack light 
   *********************************************************************/
-
-  // Import only what you need from Bulma
   @import "../node_modules/bulma/sass/utilities/_all.sass";
   @import "../node_modules/bulma/sass/base/_all.sass";
   @import "../node_modules/bulma/sass/elements/_all.sass";
   @import "../node_modules/bulma/sass/components/_all.sass";
   @import "../node_modules/bulma/sass/layout/_all.sass";
   @import "../node_modules/bulma/sass/grid/_all.sass";
-
-  /******************************************************************** 
-  START rules that will come AFTER Bulma's variables 
-  *********************************************************************/
-  .my-m-b-72 {
-    margin-top: 92px;
-  }
+  @import "../node_modules/badger-accordion/dist/badger-accordion.scss";
+  @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 </style>

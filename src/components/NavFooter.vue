@@ -12,7 +12,7 @@
         <div class="level-item">
         </div>
         <!-- right side -->
-        <div class="level-right">
+        <div class="level-right" @click="programaticNav">
             <div class="level-item is-size-1">
                 Prev.
                 &#9755;
@@ -23,9 +23,19 @@
 </template>
 
 <script>
-  export default {
-
-  }
+export default {
+  created: function() {
+    console.log(this.$router.options.routes)
+    console.info(this.$router.currentRoute.name)
+  },
+  methods: {
+    programaticNav() {
+      const result = this.$router.options.routes.filter(route => route.name == "Projects")
+      console.log(result);
+      // this.$router.push("about")
+    } 
+  } 
+}
 </script>
 
 <style lang="scss" scoped>
