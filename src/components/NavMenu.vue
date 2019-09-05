@@ -1,51 +1,51 @@
 <template>
     <div>
         <transition name="fade">
-            <section v-show="mainMenuOpened" class="my-main-menu">
-                <nav class="section">
-                    <div class="container">
-                        <dl class="js-badger-accordion">
-                            <dt>
-                                <button class=" button js-badger-accordion-header">
-                                    Header Content
-                                </button>
-                            </dt>
-                            <dd class="badger-accordion__panel js-badger-accordion-panel">
-                                <div class="js-badger-accordion-panel-inner">
-                                    <p class="menu-label">Contents</p>
-                                    <ul class="menu-list">
-                                        <li><router-link to="/">Start Here</router-link></li>
-                                        <li><router-link to="/about" class="is-active">Curriculum Vitae</router-link></li>
-                                        <li><router-link to="/principles">Design Principles</router-link></li>
-                                        <li><router-link to="/projects">Projects</router-link></li>
-                                    </ul>
-                                </div>
-                            </dd>
-                        </dl>
-                    </div>
-                </nav>
-            </section>
+            <aside v-show="mainMenuOpened" class="menu my-main-menu">
+                <ul class="menu-list">
+                    <li 
+                        v-for="link in links" 
+                        @click="setActive(link.name)"
+                        :key="link.name"
+                    >
+                        <router-link :to="link.path" :class="{'is-active': activeLink == link.name}">{{ link.name }}</router-link>
+                    </li>
+                </ul>
+            </aside>
         </transition>
     </div>
 </template>
 
 <script>
-    import BadgerAccordion from '../../node_modules/badger-accordion/dist/badger-accordion';
-    
     export default {
-        data: function () {
+        created: function() {
+            // change a name is router.js to change a name on the list
+            // considering using filter/map/reduce for routes not desired to be listed
+            console.log(this.$router.options.routes);
+            this.$router.options.routes.forEach(route => {
+                this.links.push({
+                    name: route.name,
+                    path: route.path
+                })
+            })
+        },
+        data: function() {
             return {
-                mainMenuControlText: "Main Menu",
+                links: [],
+                activeLink: "Get Started"
             }
         },
         computed: {
-            mainMenuOpened () {
+            mainMenuOpened() {
                 return this.$store.state.mainMenuOpen;
             }
         },
-        updated: function () {  
-            const accordionDomNode = document.querySelector('.js-badger-accordion');
-            const accordion = new BadgerAccordion(accordionDomNode);
+        methods: {
+            setActive(linkName) {
+                console.log(linkName)
+                this.activeLink = linkName
+                console.log(this.activeLink)
+            }
         }
     } 
 </script>
@@ -60,13 +60,15 @@
         right: 0%;
         width: 20%;
         height: 100%;
+        padding: 30px 0;
         background-color: $light-grey;
+        box-shadow: 0 2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
         z-index: 2;
     }
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
+        transition: all .5s ease;
     }
-        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
+    .fade-enter, .fade-leave-to {
+        right: -50%;
     }
 </style>

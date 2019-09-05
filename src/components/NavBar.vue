@@ -13,9 +13,6 @@
     <!-- right side -->
     <div class="level-right">
       <div class="level-right">
-        <AudioToggler/>
-      </div>
-      <div class="level-right">
         <MenuToggler/>
       </div>
     </div>
@@ -24,11 +21,9 @@
 
 <script>
   import MenuToggler from "../components/ControlMenuToggle"
-  import AudioToggler from "../components/ControlAudioToggle"
   export default {
     components: {
-      MenuToggler,
-      AudioToggler
+      MenuToggler
     }
   }
 </script>

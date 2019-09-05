@@ -15,6 +15,7 @@
 <script>
 // global non-component imports
 import TweenMax from 'gsap/src/minified/TweenMax.min.js'
+import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accordion'
 // @ is an alias to /src
 import NavBar from '@/components/NavBar'
 import NavMenu from '@/components/NavMenu'

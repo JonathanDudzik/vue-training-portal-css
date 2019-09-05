@@ -1,11 +1,11 @@
 <template>
     <div>
-        <span 
-            class="is-size-1"
+        <button
+            class="my-menu-toggle button is-size-3"
             @click="toggleMenuState"
         >
             &#9776;
-        </span>
+        </button>
     </div>
 </template>
 
@@ -18,6 +18,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

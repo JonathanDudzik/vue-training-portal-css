@@ -5,12 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    mainMenuOpen: true
+    mainMenuOpen: false
   },
   mutations: {
     toggleMenu (state) {
       state.mainMenuOpen = !state.mainMenuOpen;
     }
-    // toggleMenu: state => !mainMenuOpen
+    // Alternatively: toggleMenu: state => !mainMenuOpen
   }
 })
