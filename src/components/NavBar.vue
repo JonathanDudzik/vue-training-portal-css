@@ -8,7 +8,7 @@
     </div>
     <!-- centered items? -->
     <div class="level-item">
-      <p class="is-size-2 is-hidden-mobile">Enrollment Training</p>
+      <p class="title is-hidden-mobile has-text-white">Enrollment Training</p>
     </div>
     <!-- right side -->
     <div class="level-right">
@@ -40,5 +40,6 @@
     width: 100%;
     box-shadow: 0 2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
     padding: 10px 30px 10px 30px;
+    z-index: 3;
   }
 </style>

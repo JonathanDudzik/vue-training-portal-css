@@ -1,12 +1,12 @@
 <template>
     <div>
         <transition name="fade">
-            <section v-show="mainMenuOpener" class="my-main-menu" ref="mainMenu">
+            <section v-show="mainMenuOpened" class="my-main-menu">
                 <nav class="section">
                     <div class="container">
                         <dl class="js-badger-accordion">
                             <dt>
-                                <button class=" button js-badger-accordion-header" @click="controlMenu">
+                                <button class=" button js-badger-accordion-header">
                                     Header Content
                                 </button>
                             </dt>
@@ -39,41 +39,30 @@
             }
         },
         computed: {
-            mainMenuOpener () {
+            mainMenuOpened () {
                 return this.$store.state.mainMenuOpen;
             }
         },
         updated: function () {  
             const accordionDomNode = document.querySelector('.js-badger-accordion');
             const accordion = new BadgerAccordion(accordionDomNode);
-        },
-        methods: {
-            controlMenu: function(e) {
-                console.log(this.mainMenuOpener);
-                console.log(this.$store.state.mainMenuOpen);
-            }
-        } 
+        }
     } 
-
 </script>
 
 <style lang="scss" scoped>
     @import "../../node_modules/badger-accordion/dist/badger-accordion.scss";
-
     // Colors
     $light-grey: #ecf0f3;
-
     // My utility styles
     .my-main-menu {
-        position: absolute;
-        top: 10%;
+        position: fixed;
         right: 0%;
-        width: 10vw;
-        height: 90%;
+        width: 20%;
+        height: 100%;
         background-color: $light-grey;
-        z-index: 8000;
+        z-index: 2;
     }
-
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }

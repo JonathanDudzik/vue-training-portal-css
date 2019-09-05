@@ -1,9 +1,8 @@
 <template>
-    <div class="my-menu-toggler">
+    <div>
         <span 
-            ref="MenuToggler"
             class="is-size-1"
-            @click="openMenu"
+            @click="toggleMenuState"
         >
             &#9776;
         </span>
@@ -13,16 +12,12 @@
 <script>
 export default {
     methods: {
-        openMenu () {
-            this.$store.state.mainMenuOpen = !this.$store.state.mainMenuOpen;
-            console.log(this.$store.state.mainMenuOpen);
+        toggleMenuState() {
+            this.$store.commit('toggleMenu');
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    .my-menu-toggler {
-            z-index: 9000;
-        }
 </style>

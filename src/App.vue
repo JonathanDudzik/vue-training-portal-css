@@ -2,7 +2,7 @@
   <div id="app">
     <!-- navbar is fixed positioned at top -->
     <NavBar/>
-    <!-- This div begins themain content area -->
+    <!-- This div begins the main content area -->
     <div class="my-m-b-72">
       <NavMenu/>
       <router-view/>
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// global non-component imports
 import TweenMax from 'gsap/src/minified/TweenMax.min.js'
+// @ is an alias to /src
 import NavBar from '@/components/NavBar'
 import NavMenu from '@/components/NavMenu'
 import NavFooter from '@/components/NavFooter'
-
 export default {
   components: {
     NavBar,
@@ -56,18 +56,15 @@ export default {
   // Import only what you need from Bulma
   @import "../node_modules/bulma/sass/utilities/_all.sass";
   @import "../node_modules/bulma/sass/base/_all.sass";
-
-  @import "../node_modules/bulma/sass/elements/title.sass";
-  @import "../node_modules/bulma/sass/elements/other.sass";
-  @import "../node_modules/bulma/sass/components/level.sass";
-
-  @import "../node_modules/bulma/sass/layout/section.sass";
-  @import "../node_modules/bulma/sass/grid/columns.sass";
+  @import "../node_modules/bulma/sass/elements/_all.sass";
+  @import "../node_modules/bulma/sass/components/_all.sass";
+  @import "../node_modules/bulma/sass/layout/_all.sass";
+  @import "../node_modules/bulma/sass/grid/_all.sass";
 
   /******************************************************************** 
   START rules that will come AFTER Bulma's variables 
   *********************************************************************/
   .my-m-b-72 {
-    margin-top: 72px;
+    margin-top: 92px;
   }
 </style>
