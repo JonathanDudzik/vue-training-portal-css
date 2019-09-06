@@ -3,7 +3,7 @@
     <nav class="my-nav-bar level is-mobile has-background-light">
         <!-- left side -->
         <div class="level-left">
-            <div class="level-item is-size-1">
+            <div class="level-item is-size-4" v-on:click="previous">
                 {{ previousRouteName }}
             </div>
         </div>
@@ -11,8 +11,8 @@
         <div class="level-item">
         </div>
         <!-- right side -->
-        <div class="level-right" @click="nextRoute">
-            <div class="level-item is-size-1">
+        <div class="level-right">
+            <div class="level-item is-size-4" v-on:click="next">
                 {{ nextRouteName }}
             </div>
         </div>
@@ -22,17 +22,17 @@
 
 <script>
 export default {
-  props: [
-    "nextRoute",
-    "nextRouteName",
-    "PreviousRoute",
-    "PreviousRouteName",
-  ],
+  props: {
+    nextRouteName: String,
+    previousRouteName: String,
+    nextRoute: String,
+    previousRoute: String
+  },
   methods: {
-    nextRoute() {
+    previous() {
       this.$router.push(this.nextRoute);
     },
-    previousRoute() {
+    next: function() {
       this.$router.push(this.previousRoute);
     } 
   } 
