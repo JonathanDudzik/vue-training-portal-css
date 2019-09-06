@@ -4,18 +4,16 @@
         <!-- left side -->
         <div class="level-left">
             <div class="level-item is-size-1">
-                &#9754;
-                Next
+                {{ previousRouteName }}
             </div>
         </div>
         <!-- centered items? -->
         <div class="level-item">
         </div>
         <!-- right side -->
-        <div class="level-right" @click="programaticNav">
+        <div class="level-right" @click="nextRoute">
             <div class="level-item is-size-1">
-                Prev.
-                &#9755;
+                {{ nextRouteName }}
             </div>
         </div>
     </nav>
@@ -24,15 +22,18 @@
 
 <script>
 export default {
-  created: function() {
-    console.log(this.$router.options.routes)
-    console.info(this.$router.currentRoute.name)
-  },
+  props: [
+    "nextRoute",
+    "nextRouteName",
+    "PreviousRoute",
+    "PreviousRouteName",
+  ],
   methods: {
-    programaticNav() {
-      const result = this.$router.options.routes.filter(route => route.name == "Projects")
-      console.log(result);
-      // this.$router.push("about")
+    nextRoute() {
+      this.$router.push(this.nextRoute);
+    },
+    previousRoute() {
+      this.$router.push(this.previousRoute);
     } 
   } 
 }

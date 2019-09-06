@@ -7,8 +7,6 @@
       <NavMenu/>
       <router-view/>
     </div>
-    <!-- Footer must always me at bottom of template -->
-    <NavFooter/>
   </div>
 </template>
 
@@ -19,11 +17,9 @@ import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accord
 // @ is an alias to /src
 import NavBar from '@/components/NavBar'
 import NavMenu from '@/components/NavMenu'
-import NavFooter from '@/components/NavFooter'
 export default {
   components: {
     NavBar,
-    NavFooter,
     NavMenu
   }
 }
