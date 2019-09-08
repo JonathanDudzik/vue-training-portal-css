@@ -1,10 +1,5 @@
 <template>
-    <NavFooter 
-      :previousRouteName = routerProps[1].name 
-      :nextRouteName = routerProps[2].name 
-      :previousRoute = routerProps[1].path 
-      :nextRoute = routerProps[2].path
-    ></NavFooter>
+  <p>Hello world,<br>I am here!<br>I am SECOND content</p>
 </template>
 
 <script>

@@ -13,17 +13,17 @@
     <!-- right side -->
     <div class="level-right">
       <div class="level-right">
-        <MenuToggler/>
+        <MenuCourseBtn/>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-  import MenuToggler from "../components/ControlMenuToggle"
+  import MenuCourseBtn from "../components/MenuCourseBtn"
   export default {
     components: {
-      MenuToggler
+      MenuCourseBtn
     }
   }
 </script>

@@ -28,7 +28,8 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-###
-z-indices:
+### z-indices:
 NavMenu = 2
 NavBar = 3
+
+### Why can I use an object in components:? or use this.options.components.push to add new component options?

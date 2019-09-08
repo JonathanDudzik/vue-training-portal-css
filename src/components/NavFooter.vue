@@ -1,20 +1,22 @@
 <template>
     <div class="container">
-    <nav class="my-nav-bar level is-mobile has-background-light">
-        <!-- left side -->
+    <nav class="level is-mobile">
+        <!-- if previousRouteName is ommited, there is no previous route to show -->
+        <!-- you still want the div with class level left -->
         <div class="level-left">
-            <div class="level-item is-size-4" v-on:click="previous">
+          <div v-if="previousRouteName">
+            <div class="level-item is-size-4" v-on:click="navPrevious">
                 {{ previousRouteName }}
             </div>
+          </div>
         </div>
-        <!-- centered items? -->
-        <div class="level-item">
-        </div>
-        <!-- right side -->
+        <!-- if nextRouteName is ommited, there is no next route to show -->
         <div class="level-right">
-            <div class="level-item is-size-4" v-on:click="next">
-                {{ nextRouteName }}
+          <div v-if="nextRouteName">
+            <div class="level-item is-size-4" v-on:click="navNext">
+              {{ nextRouteName }}
             </div>
+          </div>
         </div>
     </nav>
     </div>
@@ -29,23 +31,23 @@ export default {
     previousRoute: String
   },
   methods: {
-    previous() {
-      this.$router.push(this.nextRoute);
+    navPrevious() {
+      this.$router.push(this.previousRoute)
     },
-    next: function() {
-      this.$router.push(this.previousRoute);
+    navNext: function() {
+      this.$router.push(this.nextRoute)
     } 
   } 
 }
 </script>
 
 <style lang="scss" scoped>
-  .my-nav-bar {
-    width: 40%;
-    margin: 0 auto;
-    margin-bottom: 40px;
-    border-radius: 100px;
-    box-shadow: 0 -2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
-    padding: 10px 30px 10px 30px;
-  }
+  // .my-nav-bar {
+  //   width: 40%;
+  //   margin: 0 auto;
+  //   margin-bottom: 40px;
+  //   border-radius: 100px;
+  //   box-shadow: 0 -2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
+  //   padding: 10px 30px 10px 30px;
+  // }
 </style>

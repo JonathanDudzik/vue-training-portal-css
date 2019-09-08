@@ -1,42 +1,30 @@
 <template>
-    <div>
-        <transition name="fade">
-            <aside v-show="mainMenuOpened" class="menu my-main-menu">
-                <ul class="menu-list">
-                    <li 
-                        v-for="link in links" 
-                        @click="setActive(link.name)"
-                        :key="link.name"
-                    >
-                        <router-link 
-                            :to="link.path" 
-                            :class="{'is-active': activeLink == link.name}"
-                        >
-                            <p>{{ link.name }}</p>
-                        </router-link>
-                    </li>
-                </ul>
-            </aside>
-        </transition>
-    </div>
+    <aside class="menu my-main-menu">
+        <ul class="menu-list">
+            <li 
+                v-for="link in links" 
+                :key="link.name"
+            >
+                <p> {{ link.name }} </p>
+            </li>
+        </ul>
+    </aside>
 </template>
 
 <script>
     export default {
         created: function() {
-            // change a name is router.js to change a name on the list
-            // considering using filter/map/reduce for routes not desired to be listed
-            this.$router.options.routes.forEach(route => {
+            // change the name in router.js to change a name on the list
+            // consider using filter/map/reduce for routes not desired to be listed
+            this.$store.state.contents.forEach(content => {
                 this.links.push({
-                    name: route.name,
-                    path: route.path
+                    name: content.name,
                 })
             })
         },
         data: function() {
             return {
                 links: [],
-                activeLink: "Get Started"
             }
         },
         computed: {
@@ -45,8 +33,8 @@
             }
         },
         methods: {
-            setActive(linkName) {
-                this.activeLink = linkName
+            closeMenu() {
+                this.$store.commit('toggleMenu');
             }
         }
     } 
@@ -55,6 +43,7 @@
 <style lang="scss" scoped>
     .my-main-menu {
         position: fixed;
+        top: 10%;
         right: 0%;
         width: 20%;
         height: 100%;
@@ -62,11 +51,5 @@
         background-color: #ecf0f3; // why can I use a global ike $light-grey?
         box-shadow: 0 2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
         z-index: 2;
-    }
-    .fade-enter-active, .fade-leave-active {
-        transition: all .5s ease;
-    }
-    .fade-enter, .fade-leave-to {
-        right: -50%;
     }
 </style>
