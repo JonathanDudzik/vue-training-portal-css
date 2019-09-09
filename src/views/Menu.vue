@@ -1,17 +1,15 @@
 <template>
   <div>
-    <MenuCourseBtn/>
-    <NavMenu/>
+    <BtnMenuCourse/>
   </div>
 </template>
 <script>
-import MenuCourseBtn from "../components/MenuCourseBtn"
-import NavMenu from "../components/NavMenu"
+import BtnMenuCourse from "../components/BtnMenuCourse"
+
 
 export default {
   components: {
-    MenuCourseBtn,
-    NavMenu
+    BtnMenuCourse
   }
 }
 </script>

@@ -19,13 +19,13 @@ export default new Vuex.Store({
         contentSelector: "ContentThree",
       },
     ],
-    selectedContent: "ContentThree",
+    selectedContent: "ContentOne",
     mainMenuOpen: true,
 
   },
   mutations: {
     "selectFromStore"(state, e) {
-      state.selectedContent = e.dynamicSelector;
+      state.selectedContent = e;
     }
   }
 })

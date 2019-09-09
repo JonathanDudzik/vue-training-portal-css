@@ -35,7 +35,7 @@
         },
         methods: {
             selectContent(e) {
-                this.$store.commit("selectFromStore", e);
+                this.$store.commit("selectFromStore", e.dynamicSelector);
             }
         }
     } 

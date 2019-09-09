@@ -8,6 +8,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: "/menu"
+    },
+    {
       path: '/menu',
       name: 'Menu',
       component: Menu
@@ -19,6 +23,15 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/Course.vue')
+    },
+    { 
+      path: '/404', 
+      name: "NotFound",
+      component: () => import(/* webpackChunkName: "about" */ './views/NotFound.vue')
+    },  
+    { 
+      path: '*', 
+      redirect: '/404' 
     }
   ]
 })

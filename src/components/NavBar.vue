@@ -13,17 +13,17 @@
     <!-- right side -->
     <div class="level-right">
       <div class="level-right">
-        <MenuCourseBtn/>
+        <BtnMenuCourse/>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-  import MenuCourseBtn from "../components/MenuCourseBtn"
+  import BtnMenuCourse from "../components/BtnMenuCourse"
   export default {
     components: {
-      MenuCourseBtn
+      BtnMenuCourse
     }
   }
 </script>

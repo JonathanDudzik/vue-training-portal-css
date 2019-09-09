@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <NavMenu class="section margin"/>
-    <component :is="selectedContent" class="section margin"></component>
+    <component :is="selectedContent" class="section"></component>
   </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
 <style lang="scss" scoped>
 .margin {
     margin-top: 70px;
+    margin-right: 50%; 
 }
 
 </style>

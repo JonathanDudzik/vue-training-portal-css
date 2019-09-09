@@ -1,5 +1,13 @@
 <template>
-  <p>Hello world,<br>I am here!<br>I am SECOND content</p>
+  <div>
+    <h1 class="is-size-1">TWO</h1>
+    <NavFooter  
+      :prevContentIdentifier="contentProps[0].identifier"
+      :prevContentSelector="contentProps[0].contentSelector"
+      :nextContentIdentifier="contentProps[2].identifier"
+      :nextContentSelector="contentProps[2].contentSelector"
+    ></NavFooter>
+  </div>
 </template>
 
 <script>
@@ -9,8 +17,8 @@ export default {
     NavFooter
   },
   computed: {
-    routerProps() {
-      return this.$router.options.routes
+    contentProps() {
+      return this.$store.state.navMenuInfo
     }
   }
 }

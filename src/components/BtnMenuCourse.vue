@@ -13,7 +13,11 @@
 export default {
     methods: {
         toggleMenuState() {
-            this.$store.commit('toggleMenu');
+            if(this.$router.currentRoute.path == "/menu") {
+                this.$router.push('/course')
+            }else {
+                this.$router.push('/menu')
+            }
         }
     }
 }

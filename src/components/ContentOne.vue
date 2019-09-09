@@ -1,7 +1,9 @@
 <template>
   <div>
+    <h1 class="is-size-1">ONE</h1>
     <NavFooter  
       :nextContentIdentifier="contentProps[1].identifier"
+      :nextContentSelector="contentProps[1].contentSelector"
     ></NavFooter>
   </div>
 </template>
