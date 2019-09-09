@@ -3,15 +3,24 @@
     <NavBar/>
     <NavMenu class="section margin"/>
     <component :is="selectedContent" class="section margin"></component>
-    <NavFooter/>
   </div>
 </template>
 
 <script>
+import NavBar from "../components/NavBar"
+import NavMenu from "../components/NavMenu"
+import ContentOne from "../components/ContentOne"
+import ContentTwo from "../components/ContentTwo"
+import ContentThree from "../components/ContentThree"
+
 
 export default {
-    beforeMount() {
-        this.$options.components = this.$store.state.courseContents.componentObjects
+    components: {
+        "NavBar": NavBar,
+        "NavMenu": NavMenu,
+        "ContentOne": ContentOne,
+        "ContentTwo": ContentTwo,
+        "ContentThree": ContentThree,
     },
     computed: {
         selectedContent() {

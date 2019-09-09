@@ -1,8 +1,9 @@
 <template>
+  <div>
     <NavFooter  
-      :nextRouteName = routerProps[1].name 
-      :nextRoute = routerProps[1].path
+      :nextContentIdentifier="contentProps[1].identifier"
     ></NavFooter>
+  </div>
 </template>
 
 <script>
@@ -12,8 +13,8 @@ export default {
     NavFooter
   },
   computed: {
-    routerProps() {
-      return this.$router.options.routes
+    contentProps() {
+      return this.$store.state.navMenuInfo
     }
   }
 }

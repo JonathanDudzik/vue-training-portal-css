@@ -3,10 +3,9 @@
         <ul class="menu-list">
             <li 
                 v-for="link in links" 
-                :key="link.name"
+                :key="link.identifier"
             >
-                <p> {{ link.name }} </p>
-                <p> {{ link.dynamicSelector }} </p>
+                <p @click="selectContent(link)"> {{ link.identifier }} </p>
             </li>
         </ul>
     </aside>
@@ -17,10 +16,10 @@
         created: function() {
             // change the name in router.js to change a name on the list
             // consider using filter/map/reduce for routes not desired to be listed
-            this.$store.state.courseContents.navMenuInfo.forEach(name => {
+            this.$store.state.navMenuInfo.forEach(info => {
                 this.links.push({
-                    name: name.identifier,
-                    dynamicSelector: name.contentSelector
+                    identifier: info.identifier,
+                    dynamicSelector: info.contentSelector
                 })
             })
         },
@@ -35,8 +34,8 @@
             }
         },
         methods: {
-            closeMenu() {
-                this.$store.commit('toggleMenu');
+            selectContent(e) {
+                this.$store.commit("selectFromStore", e);
             }
         }
     } 
