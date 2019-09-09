@@ -6,6 +6,7 @@
                 :key="link.name"
             >
                 <p> {{ link.name }} </p>
+                <p> {{ link.dynamicSelector }} </p>
             </li>
         </ul>
     </aside>
@@ -16,9 +17,10 @@
         created: function() {
             // change the name in router.js to change a name on the list
             // consider using filter/map/reduce for routes not desired to be listed
-            this.$store.state.contents.forEach(content => {
+            this.$store.state.courseContents.navMenuInfo.forEach(name => {
                 this.links.push({
-                    name: content.name,
+                    name: name.identifier,
+                    dynamicSelector: name.contentSelector
                 })
             })
         },

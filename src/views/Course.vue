@@ -8,28 +8,10 @@
 </template>
 
 <script>
-import NavBar from "../components/NavBar"
-import NavMenu from "../components/NavMenu"
-import NavFooter from "../components/NavFooter"
-import ContentOne from "../components/ContentOne"
-import ContentTwo from "../components/ContentTwo"
-import ContentThree from "../components/ContentThree"
 
 export default {
-    data() {
-        return {
-            componentsToUse: {
-                NavBar,
-                NavMenu,
-                NavFooter,
-                ContentOne,
-                ContentTwo,
-                ContentThree,
-            }
-        }
-    },
     beforeMount() {
-        this.$options.components = this.componentsToUse
+        this.$options.components = this.$store.state.courseContents.componentObjects
     },
     computed: {
         selectedContent() {
@@ -41,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .margin {
-    margin-top: 30px;
+    margin-top: 70px;
 }
 
 </style>
