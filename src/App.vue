@@ -8,8 +8,8 @@
 // global non-component imports
 import TweenMax from 'gsap/src/minified/TweenMax.min.js'
 import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accordion'
-export default {
-}
+
+export default {}
 </script>
 
 <style lang="scss">

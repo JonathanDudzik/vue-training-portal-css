@@ -1,21 +1,25 @@
 <template>
-  <div class="container">
+  <div class="section">
+  <div class="container content">
     <nav class="level is-mobile">
       <div class="level-left">
         <div v-if="prevContentIdentifier">
-          <div class="level-item">
-            <button class="button is-size-3" @click="navPrev">{{ prevContentIdentifier }}</button>
+          <div class="level-item" @click="navPrev">
+            <p class="is-size-3 is-marginless" style="transform: rotate(0.5turn);">&#10140;</p>
+            <p class="is-size-3 is-marginless"><em>{{ prevContentIdentifier }}</em></p>
           </div>
         </div>
       </div>
       <div class="level-right">
         <div v-if="nextContentIdentifier">
-          <div class="level-item">
-            <button class="button is-size-3" @click="navNext">{{ nextContentIdentifier }}</button>
+          <div class="level-item" @click="navNext">
+            <p class="is-size-3 is-marginless">{{ nextContentIdentifier }}</p>
+            <p class="is-size-3 is-marginless">&#10140;</p>
           </div>
         </div>
       </div>
     </nav>
+  </div>
   </div>
 </template>
 
@@ -37,3 +41,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.my-footer {
+  position: fixed;
+  top: 60vh;
+  left: 0vh;
+}
+
+.level-item {
+  cursor: pointer;
+}
+
+</style>

@@ -1,8 +1,14 @@
 <template>
   <div>
     <NavBar/>
-    <NavMenu class="section margin"/>
-    <component :is="selectedContent" class="section"></component>
+    <div class="columns margin-content-top length-full">
+        <div class="column is-2">
+             <NavMenu class="section"/>
+        </div>
+        <div class="column is-10">
+            <component :is="selectedContent" class="section"></component>
+        </div>
+    </div> 
   </div>
 </template>
 
@@ -31,9 +37,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.margin {
-    margin-top: 70px;
-    margin-right: 50%; 
-}
-
+    // This margin is determined by the actual size of the NavBar
+    .margin-content-top {
+        margin-top: 92px;
+    }
+    .length-full {
+        min-height: 90vh;
+    }
 </style>
