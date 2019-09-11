@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// global non-component imports
+// global non-component specific imports(?)
 import TweenMax from 'gsap/src/minified/TweenMax.min.js'
 import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accordion'
 

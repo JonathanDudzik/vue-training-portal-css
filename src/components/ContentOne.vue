@@ -10,6 +10,7 @@
 
 <script>
 import NavFooter from '@/components/NavFooter'
+import axios from 'axios'
 export default {
   components: {
     NavFooter

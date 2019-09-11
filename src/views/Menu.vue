@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="field">
-      <label class="label">{{posts.status}}</label>
+      <label class="label">Name</label>
       <div class="control">
         <input class="input" type="text" placeholder="e.g Alex Smith">
       </div>
@@ -20,27 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
-
-  data() {
-    return {
-      posts: []
-    }
-  },
-
-  created(){
-    // this preforms a GET request
-    axios.get('https://jsonplaceholder.typicode.com/todos/1')
-      .then(response => {
-        console.log(response)
-        this.posts = response
-      }).catch(error => {
-        console.log(error)
-        alert("sorry bro")
-      })
-  },
   methods: {
       toggleMenuState() {
           if(this.$router.currentRoute.path == "/menu") {

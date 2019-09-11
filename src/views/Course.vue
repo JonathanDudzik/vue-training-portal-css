@@ -2,6 +2,7 @@
   <div>
     <NavBar/>
     <div class="columns margin-content-top length-full">
+        <p>{{ posts.config ? posts.config.length : "0" }}</p>
         <div class="column is-2">
              <NavMenu class="section"/>
         </div>
@@ -18,9 +19,24 @@ import NavMenu from "../components/NavMenu"
 import ContentOne from "../components/ContentOne"
 import ContentTwo from "../components/ContentTwo"
 import ContentThree from "../components/ContentThree"
-
+import RecordService from '@/services/AxiosCalls.js'
 
 export default {
+    data() {
+        return {
+            posts: {}
+        }
+    },
+    created() {
+        RecordService.getRecords()
+        .then(record => {
+            console.log(record)
+            this.posts = record
+        }).catch(error => {
+            console.log(error)
+            alert("sorry bro")
+        })
+    },
     components: {
         "NavBar": NavBar,
         "NavMenu": NavMenu,
