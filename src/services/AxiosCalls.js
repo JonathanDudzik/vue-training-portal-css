@@ -10,7 +10,8 @@ const apiClient = axios.create({
 })
 
 export default {
+    apiClient,
     getRecords() {
         return apiClient.get('/todos/1')
     }
-}
+} 
