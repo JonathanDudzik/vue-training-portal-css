@@ -1,11 +1,5 @@
 <template>
   <div class="section">
-    <div class="field">
-      <label class="label">Name</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="e.g Alex Smith" v-model="name">
-      </div>
-    </div>
 
     <div class="field">
       <label class="label">Email</label>
@@ -17,16 +11,17 @@
     <div class="field">
       <label class="label">Password</label>
       <div class="control">
-        <input class="input" type="text" v-model="password">
+        <input class="input" type="password" v-model="password">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Agreement Number</label>
+      <label class="label">CACFP Agreement Number</label>
       <div class="control">
-        <input class="input" type="text" v-model="alias">
+        <input class="input" type="text" v-model="agreementNumber">
       </div>
     </div>
+
     <p v-if="feedback">{{ feedback }}</p>
     <div class="control">
       <button class="button is-primary" @click="signup">Submit</button>
@@ -36,39 +31,39 @@
 </template>
 
 <script>
-import slugify from 'slugify'
 import db from '@/services/FirebaseInit'
+import firebase from 'firebase'
 
 export default {
   data() {
     return {
-      name: null,
       email: null,
       password: null,
-      alias: null,
+      agreementNumber: null,
       feedback: null,
-      slug: null
     }
   },
   methods: {
     signup() {
-      if(this.alias) {
-        this.slug = slugify(this.alias, {
-          replacement: '-',
-          remove: /[$*_+~.()'"!\-:@]/g,
-          lower: true 
+      const ref = db.collection('users').doc(this.email)
+      if(this.agreementNumber && this.email && this.password) {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(cred => {
+          console.log(cred)
+          ref.set({
+            agreementNumber: this.agreementNumber,
+            user_id: cred.user.uid
+          })
+        }).then(() => {
+          this.$router.push({ name: 'Course' })
         })
-        let ref = db.collection('users').doc(this.slug)
-        ref.get().then(doc => {
-          if(doc.exists) {
-            this.feedback = "this number is not valid"
-          } else {
-            this.feedback = 'that is a valid agreement number!'
-          }
+        .catch(error => {
+          console.log(error)
+          this.feedback = error.message
         })
-        console.log(this.slug)
+        this.feedback = ""
       } else {
-        this.feedback = "You must enter an NC CACFP Agreement Number"
+        this.feedback = "You must complete all fields"
       }
     },
     toggleMenuState() {
