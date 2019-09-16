@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="is-size-1" @click="checkDb">ONE</h1>
+    <h1 class="is-size-1">ONE</h1>
     <NavFooter  
       :nextContentIdentifier="contentProps[1].identifier"
       :nextContentSelector="contentProps[1].contentSelector"
@@ -10,53 +10,48 @@
 
 <script>
 import NavFooter from '@/components/NavFooter'
-// import axios like dynamodb
-import calls from '@/services/AxiosCalls'
-import db from '@/services/DynamoDbInit'
+import axios from 'axios'
+import RecordService from '@/services/AxiosCalls'
+import statements from '@/services/XapiStatements'
 
 export default {
   components: {
     NavFooter
   },
   data( ) {
-    return {
-      testData: [],
-      params: {
-        TableName : "",
-        KeySchema: [
-            { AttributeName: "year", KeyType: "HASH"},
-            { AttributeName: "title", KeyType: "RANGE" }
-        ],
-        AttributeDefinitions: [
-            { AttributeName: "year", AttributeType: "N" },
-            { AttributeName: "title", AttributeType: "S" }
-        ],
-        ProvisionedThroughput: {
-            ReadCapacityUnits: 5,
-            WriteCapacityUnits: 5
-        }
-      }
-    }  
+    return {}  
   },
   created() {
-    db.createTable(this.params, function(err, data) {
-        if (err) {
-            console.log("Unable to create table: " + "\n" + JSON.stringify(err, undefined, 2));
-        } else {
-            console.log("Created table: " + "\n" + JSON.stringify(data, undefined, 2));
-        }
+    // axios.get('https://watershedlrs.com/api/organizations/8761/lrs/statements?statementId=dfb7218c-0fc9-4dfc-9524-d497097de027', {
+    //   headers: {'X-Experience-API-Version': "1.0.3", 'Content-Type': "application/json"},
+    //   auth: {
+    //     username: 'f5f895c9c8022d',
+    //     password: 'e8d06eb126925e'
+    //   },
+    // })
+    // .then(response => {
+    //   console.log(response)
+    // })
+    axios({
+      method: 'put',
+      url: 'https://watershedlrs.com/api/organizations/8761/lrs/statements?statementId=' + statements.statementId,
+      data: statements.experienced,
+      headers: {'X-Experience-API-Version': "1.0.3", 'Content-Type': "application/json"},
+      auth: {
+        username: 'f5f895c9c8022d',
+        password: 'e8d06eb126925e'
+      },
     })
+      .then(function (response) {
+        console.log(response)
+      });
   },
   computed: {
     contentProps() {
       return this.$store.state.navMenuInfo
     }
   },
-  methods: {
-    checkDb() {
-      console.log(db)
-    }
-  }
+  methods: {}
 }
 </script>
 

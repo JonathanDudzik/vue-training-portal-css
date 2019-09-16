@@ -19,6 +19,12 @@ export default new Vuex.Store({
         contentSelector: "ContentThree",
       },
     ],
+    learnerInfo: [
+      {
+      name: "",
+      id: "mailto:default@learner.com",
+      }
+    ],
     selectedContent: "ContentOne",
     mainMenuOpen: true,
 
