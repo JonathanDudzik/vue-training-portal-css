@@ -4,7 +4,7 @@
     <div class="columns margin-content-top length-full">
         <p>{{ posts.config ? posts.config.length : "0" }}</p>
         <div class="column is-2">
-             <NavMenu class="section"/>
+             <NavMenu/>
         </div>
         <div class="column is-10">
             <component :is="selectedContent" class="section"></component>
@@ -19,7 +19,6 @@ import NavMenu from "../components/NavMenu"
 import ContentOne from "../components/ContentOne"
 import ContentTwo from "../components/ContentTwo"
 import ContentThree from "../components/ContentThree"
-import RecordService from '@/services/AxiosCalls.js'
 
 export default {
     data() {
@@ -27,16 +26,7 @@ export default {
             posts: {}
         }
     },
-    created() {
-        RecordService.getRecords()
-        .then(record => {
-            console.log(record)
-            this.posts = record
-        }).catch(error => {
-            console.log(error)
-            alert("sorry bro")
-        })
-    },
+    created() {},
     components: {
         "NavBar": NavBar,
         "NavMenu": NavMenu,
@@ -55,9 +45,9 @@ export default {
 <style lang="scss" scoped>
     // This margin is determined by the actual size of the NavBar
     .margin-content-top {
-        margin-top: 92px;
+        margin-top: 134px;
     }
     .length-full {
-        min-height: 90vh;
+        min-height: 80vh;
     }
 </style>

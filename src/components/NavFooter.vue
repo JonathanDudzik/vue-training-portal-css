@@ -1,5 +1,4 @@
 <template>
-  <div class="section">
   <div class="container content">
     <nav class="level is-mobile">
       <div class="level-left">
@@ -19,7 +18,6 @@
         </div>
       </div>
     </nav>
-  </div>
   </div>
 </template>
 

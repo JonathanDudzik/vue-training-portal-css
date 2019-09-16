@@ -1,18 +1,23 @@
 <template>
-  <div>
-    <h1 class="is-size-1">ONE</h1>
+  <section class="section">
+    <div class="container">
+      <h1 class="title is-size-1">
+        Welcome
+      </h1>
+      <!-- <div class="is-divider"></div> "data-content" can be used to add text -->
+    </div>
     <NavFooter  
       :nextContentIdentifier="contentProps[1].identifier"
       :nextContentSelector="contentProps[1].contentSelector"
     ></NavFooter>
-  </div>
+  </section>
 </template>
 
 <script>
 import NavFooter from '@/components/NavFooter'
-import axios from 'axios'
-import RecordService from '@/services/AxiosCalls'
-import statements from '@/services/XapiStatements'
+import RecordService from '@/services/AxiosLrsCalls'
+import statements from '@/services/ExperienceStatements'
+
 
 export default {
   components: {
@@ -22,34 +27,13 @@ export default {
     return {}  
   },
   created() {
-    // axios.get('https://watershedlrs.com/api/organizations/8761/lrs/statements?statementId=dfb7218c-0fc9-4dfc-9524-d497097de027', {
-    //   headers: {'X-Experience-API-Version': "1.0.3", 'Content-Type': "application/json"},
-    //   auth: {
-    //     username: 'f5f895c9c8022d',
-    //     password: 'e8d06eb126925e'
-    //   },
-    // })
-    // .then(response => {
-    //   console.log(response)
-    // })
-    axios({
-      method: 'put',
-      url: 'https://watershedlrs.com/api/organizations/8761/lrs/statements?statementId=' + statements.statementId,
-      data: statements.experienced,
-      headers: {'X-Experience-API-Version': "1.0.3", 'Content-Type': "application/json"},
-      auth: {
-        username: 'f5f895c9c8022d',
-        password: 'e8d06eb126925e'
-      },
-    })
-      .then(function (response) {
-        console.log(response)
-      });
+    RecordService.putStatements(statements.experienced).then(response => response)
+    RecordService.getStatements().then(response => response)
   },
   computed: {
     contentProps() {
       return this.$store.state.navMenuInfo
-    }
+    },
   },
   methods: {}
 }

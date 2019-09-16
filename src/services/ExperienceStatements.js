@@ -1,6 +1,7 @@
 import store from '@/store.js'
+import uuidGen from 'uuid/v1'
 
-const statementId = 'dfb7218c-0fc9-4dfc-9524-d497097de023'
+const statementId = uuidGen()
 const experienced = {
     "id": statementId,
     "actor": {
@@ -12,9 +13,9 @@ const experienced = {
       "display": { "en-US": "experienced" }
     },
     "object": {
-      "id": "http://example.com/course/solo-hang-gliding",
+      "id": "http://example.com/course/" + statementId,
       "definition": {
-        "name": { "en-US": "Solo Hang Gliding" }
+        "name": { "en-US": store.state.selectedContent }
       }
     }
   }

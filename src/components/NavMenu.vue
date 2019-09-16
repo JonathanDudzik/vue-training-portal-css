@@ -1,12 +1,14 @@
 <template>
-    <aside class="section menu my-main-menu">
+    <aside class="menu my-main-menu">
         <ul class="menu-list">
-            <li 
-                v-for="link in links" 
-                :key="link.identifier"
-            >
-                <p @click="selectContent(link)"> {{ link.identifier }} </p>
-            </li>
+            <h1 class="is-size-5">Income Eligibility Training</h1>
+            <div class="is-divider"></div>
+                <li 
+                    v-for="link in links" 
+                    :key="link.identifier"
+                >
+                    <p @click="selectContent(link)">{{ link.identifier }}</p>
+                </li>
         </ul>
     </aside>
 </template>
@@ -26,6 +28,7 @@
         data: function() {
             return {
                 links: [],
+                courseName: this.$store.state.shortCourseName,
             }
         },
         computed: {
@@ -46,6 +49,7 @@
         height: 100%;
         background-color: #ecf0f3; // why can I use a global ike $light-grey?
         box-shadow: 0 2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
+        padding: 10px 20px 10px 20px;
         z-index: 2;
     }
 </style>

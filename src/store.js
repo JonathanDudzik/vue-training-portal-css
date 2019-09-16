@@ -7,24 +7,38 @@ export default new Vuex.Store({
   state: {
     navMenuInfo: [
       {
-        identifier: "Slide 1",
-        contentSelector: "ContentOne",
+        identifier: "Welcome",
+        contentSelector: "ContentOne", //must match name in src/components 
       },
       {
-        identifier: "Slide 2",
+        identifier: "Objectives",
         contentSelector: "ContentTwo",
       },
       {
-        identifier: "Slide 3",
+        identifier: "Regulations",
+        contentSelector: "ContentThree",
+      },
+      {
+        identifier: "Exemptions",
+        contentSelector: "ContentOne", //must match name in src/components 
+      },
+      {
+        identifier: "Application",
+        contentSelector: "ContentTwo",
+      },
+      {
+        identifier: "Income Eligibility",
         contentSelector: "ContentThree",
       },
     ],
     learnerInfo: [
       {
-      name: "",
+      name: "Default Learner",
       id: "mailto:default@learner.com",
       }
     ],
+    shortCourseName: "Child Eligiblity Training",
+    shortSectionName: "Welcome",
     selectedContent: "ContentOne",
     mainMenuOpen: true,
 
