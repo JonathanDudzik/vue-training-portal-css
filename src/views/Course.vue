@@ -3,7 +3,8 @@
     <NavBar/>
     <div class="columns margin-content-top length-full">
         <div class="column is-8 is-offset-2">
-            <component :is="selectedContent" class="section"></component>
+            <router-view></router-view>
+            <NavFooter/>
         </div>
     </div> 
   </div>
@@ -11,9 +12,7 @@
 
 <script>
 import NavBar from "../components/NavBar"
-import ContentOne from "../components/ContentOne"
-import ContentTwo from "../components/ContentTwo"
-import ContentThree from "../components/ContentThree"
+import NavFooter from '@/components/NavFooter'
 
 export default {
     data() {
@@ -23,14 +22,7 @@ export default {
     created() {},
     components: {
         "NavBar": NavBar,
-        "ContentOne": ContentOne,
-        "ContentTwo": ContentTwo,
-        "ContentThree": ContentThree,
-    },
-    computed: {
-        selectedContent() {
-            return this.$store.state.selectedContent;
-        }
+        "NavFooter": NavFooter,
     }
 }
 </script>

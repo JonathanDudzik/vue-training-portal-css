@@ -18,15 +18,21 @@ export default new Router({
     },
     {
       path: '/course',
-      name: 'Course',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/Course.vue')
+      component: Course,
+      children: [
+        {path: "", redirect: "instructions"},
+        {path: "instructions", name: "Instructions", component: () => import(/* webpackChunkName: "about" */ './components/SectionInstructions.vue'),},
+        {path: "welcome", name: "Welcome", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome.vue'),},
+        {path: "regulations", name: "Regulations", component: () => import(/* webpackChunkName: "about" */ './components/SectionRegulations.vue'),},
+        {path: "exemptions", name: "Exemptions", component: () => import(/* webpackChunkName: "about" */ './components/SectionExemptions.vue'),},
+      ]
     },
     { 
       path: '/404', 
       name: "NotFound",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/NotFound.vue')
     },  
     { 

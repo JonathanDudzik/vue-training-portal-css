@@ -17,14 +17,16 @@
     <nav class="level my-nav-bar--bottom has-text-light is-mobile">
       <div class="level-left">
         <div class="level-item">
-          <p class="is-hidden-mobile">{{ courseName }}</p> 
-          <p class="is-hidden-mobile" style="padding:0px 10px 0px 10px;">&#10072;</p> 
-          <p>{{ sectionName }}</p>
+          <p class="is-hidden-mobile">{{ this.$store.state.shortCourseName }}</p> 
+          <p class="is-hidden-mobile" style="padding:0px 10px 0px 10px;">&#10140;</p> 
+          <p>{{ this.$store.state.currentRoute }}</p>
         </div>
       </div>
       <div class="level-right">
         <div class="level-item">
-          <h2 class="is-size-6"><pause-circle-outline/><span style="padding-left: 10px;">Pause Audio</span></h2>
+          <p>Play</p>
+          <p style="padding:0px 10px 0px 10px;">&#10072;</p> 
+          <p>Pause</p>
         </div>
       </div>
     </nav>
@@ -34,18 +36,13 @@
 
 <script>
   import BtnMenuCourse from "../components/BtnMenuCourse"
-  import PauseCircleOutline from 'vue-material-design-icons/PauseCircleOutline.vue';
 
   export default {
     components: {
       BtnMenuCourse,
-      PauseCircleOutline
     },
     data() {
-      return {
-        courseName: this.$store.state.shortCourseName,
-        sectionName: this.$store.state.shortSectionName
-      }
+      return {}
     },
   }
 </script>

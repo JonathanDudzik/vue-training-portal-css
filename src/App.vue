@@ -5,8 +5,8 @@
 </template>
 
 <script>
-// global non-component specific imports(?)
-import TweenMax from 'gsap/src/minified/TweenMax.min.js'
+// global non-component specific imports
+import TweenMax from 'gsap/all.js'
 import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accordion'
 
 export default {}

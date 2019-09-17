@@ -1,41 +1,46 @@
 <template>
-  <div class="container content">
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <div v-if="prevContentIdentifier">
-          <div class="level-item" @click="navPrev">
-            <p class="is-size-3 is-marginless" style="transform: rotate(0.5turn);">&#10140;</p>
-            <p class="is-size-3 is-marginless"><em>{{ prevContentIdentifier }}</em></p>
+  <section class="section">
+    <div class="container content">
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <div v-if="prevRoute">
+            <div class="level-item" @click='toPrevRoute'>
+              <p class="is-size-5 is-marginless" style="transform: rotate(0.5turn);">&#10140;</p>
+              <p class="is-size-5 is-marginless"><em>{{ prevRoute }}</em></p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="level-right">
-        <div v-if="nextContentIdentifier">
-          <div class="level-item" @click="navNext">
-            <p class="is-size-3 is-marginless">{{ nextContentIdentifier }}</p>
-            <p class="is-size-3 is-marginless">&#10140;</p>
+        <div class="level-right">
+          <div v-if="nextRoute">
+            <div class="level-item" @click='toNextRoute'>
+              <p class="is-size-5 is-marginless">{{ nextRoute }}</p>
+              <p class="is-size-5 is-marginless">&#10140;</p>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  </div>
+      </nav>
+    </div>
+  </section>
 </template>
 
 <script>
 export default {
-  props: {
-    nextContentIdentifier: String,
-    nextContentSelector: String,
-    prevContentIdentifier: String,
-    prevContentSelector: String
+  computed: {
+      // nextRoute and prevRoute values set in current routed view
+      nextRoute: function() { 
+        return this.$store.state.nextRoute
+      },
+       prevRoute: function() { 
+        return this.$store.state.prevRoute
+      },
   },
   methods: {
-    navNext() {
-      this.$store.commit("selectFromStore", this.nextContentSelector)
+    toNextRoute() {
+      this.$router.push({ name: this.nextRoute, append: true })
     },
-    navPrev() {
-      this.$store.commit("selectFromStore", this.prevContentSelector)
-    }
+    toPrevRoute() {
+      this.$router.push({ name: this.prevRoute, append: true })
+    },
   }
 }
 </script>
