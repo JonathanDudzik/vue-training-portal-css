@@ -20,7 +20,7 @@ export default new Vuex.Store({
       },
       {
         identifier: "Exemptions",
-        contentSelector: "ContentOne", //must match name in src/components 
+        contentSelector: "ContentOne",
       },
       {
         identifier: "Application",

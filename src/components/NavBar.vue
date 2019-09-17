@@ -1,53 +1,52 @@
 <template>
-  <div class="my-nav-bar">
+<div class="my-nav-bar">
+    
     <nav class="level my-nav-bar--top is-mobile has-background-primary is-marginless">
-      <!-- left side -->
       <div class="level-left">
         <div class="level-item">
           <img src="../assets/logo.png" alt="logo">
         </div>
       </div>
-      <!-- right side -->
       <div class="level-right">
-        <div class="level-right">
+        <div class="level-item">
           <BtnMenuCourse/>
         </div>
       </div>
     </nav>
     
-    <div class="level my-nav-bar--bottom has-text-light is-mobile">
+    <nav class="level my-nav-bar--bottom has-text-light is-mobile">
       <div class="level-left">
-        <div>Listen</div>
-      </div>
-      <div class="level-item">
-        <div class="level-item is-hidden-mobile">
-          <p>Points: 97 of 150</p>
+        <div class="level-item">
+          <p class="is-hidden-mobile">{{ courseName }}</p> 
+          <p class="is-hidden-mobile" style="padding:0px 10px 0px 10px;">&#10072;</p> 
+          <p>{{ sectionName }}</p>
         </div>
       </div>
       <div class="level-right">
         <div class="level-item">
-          <input class="input is-small" type="text" placeholder="search">
-          <span class="icon is-small is-left">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </span>
+          <h2 class="is-size-6"><pause-circle-outline/><span style="padding-left: 10px;">Pause Audio</span></h2>
         </div>
       </div>
-    </div>
+    </nav>
+
   </div>
 </template>
 
 <script>
   import BtnMenuCourse from "../components/BtnMenuCourse"
+  import PauseCircleOutline from 'vue-material-design-icons/PauseCircleOutline.vue';
+
   export default {
     components: {
-      BtnMenuCourse
+      BtnMenuCourse,
+      PauseCircleOutline
     },
     data() {
       return {
         courseName: this.$store.state.shortCourseName,
         sectionName: this.$store.state.shortSectionName
       }
-    }
+    },
   }
 </script>
 

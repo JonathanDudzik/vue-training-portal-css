@@ -31,10 +31,6 @@ export default {}
   $menu-item-hover-background-color: hsl(0, 0%, 71%);
   $family-primary: "TransportNew", Arial, "Helvetica Neue", Helvetica, sans-serif;
 
-  .my-background-image {
-    background-image: url("./assets/background-blue-solid.png");
-  }
-
   /******************************************************************** 
   Imports: pack light 
   *********************************************************************/
@@ -47,5 +43,6 @@ export default {}
   @import "../node_modules/bulma-divider/dist/css/bulma-divider.sass";
 
   @import "../node_modules/badger-accordion/dist/badger-accordion.scss";
+  @import "../node_modules/vue-material-design-icons/styles.css";
   @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 </style>

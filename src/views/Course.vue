@@ -2,11 +2,7 @@
   <div>
     <NavBar/>
     <div class="columns margin-content-top length-full">
-        <p>{{ posts.config ? posts.config.length : "0" }}</p>
-        <div class="column is-2">
-             <NavMenu/>
-        </div>
-        <div class="column is-10">
+        <div class="column is-8 is-offset-2">
             <component :is="selectedContent" class="section"></component>
         </div>
     </div> 
@@ -15,7 +11,6 @@
 
 <script>
 import NavBar from "../components/NavBar"
-import NavMenu from "../components/NavMenu"
 import ContentOne from "../components/ContentOne"
 import ContentTwo from "../components/ContentTwo"
 import ContentThree from "../components/ContentThree"
@@ -23,13 +18,11 @@ import ContentThree from "../components/ContentThree"
 export default {
     data() {
         return {
-            posts: {}
         }
     },
     created() {},
     components: {
         "NavBar": NavBar,
-        "NavMenu": NavMenu,
         "ContentOne": ContentOne,
         "ContentTwo": ContentTwo,
         "ContentThree": ContentThree,
