@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Menu from 'vue-material-design-icons/Speedometer.vue';
+import Menu from 'vue-material-design-icons/ViewHeadline.vue';
 
 export default {
     components: {

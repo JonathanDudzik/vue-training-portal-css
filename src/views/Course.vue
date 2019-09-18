@@ -1,13 +1,17 @@
 <template>
+<transition name="fade">
   <div>
     <NavBar/>
     <div class="columns margin-content-top length-full">
         <div class="column is-8 is-offset-2">
-            <router-view></router-view>
+            <transition name="fade" mode="out-in">
+                <router-view></router-view>
+            </transition>
             <NavFooter/>
         </div>
     </div> 
   </div>
+</transition>
 </template>
 
 <script>
@@ -34,5 +38,11 @@ export default {
     }
     .length-full {
         min-height: 80vh;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

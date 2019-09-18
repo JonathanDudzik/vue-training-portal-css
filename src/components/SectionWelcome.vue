@@ -15,6 +15,9 @@ import Headphones from 'vue-material-design-icons/Headphones.vue';
 import PauseCircleOutline from 'vue-material-design-icons/PauseCircleOutline.vue';
 import Captions from '../services/SectionCaptions'
 
+const tween = new TimelineMax()
+const audio = new Audio(require('../assets/welcome.mp3'));
+
 export default {
   components: {
     Headphones,
@@ -27,9 +30,7 @@ export default {
   },
   methods: {
     playWelcomeContentOne() {
-      var audio = new Audio(require('../assets/welcome.mp3'));
       const { welcomeCaptionsOne } = this.$refs
-      const tween = new TimelineMax()
       tween.set(welcomeCaptionsOne, {text: Captions.captions[0]}, '+=1')
         .set(welcomeCaptionsOne, {text: Captions.captions[1]}, '+=1')
         .set(welcomeCaptionsOne, {text: Captions.captions[2]}, '+=1')
