@@ -22,8 +22,8 @@ export default {
   },
   mounted() {
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[3].name)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[2].children[1].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[2].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[2].children[0].name)
   },
   methods: {
     playWelcomeContentOne() {

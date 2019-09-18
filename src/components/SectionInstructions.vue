@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title is-size-1">Welcome</h1>
+      <h1 class="title is-size-1">Instructions</h1>
       <button class="is-size-5 button" @click=playWelcomeContentOne><headphones/><em style="padding-left: 10px;">Listen from here</em></button>
       <div class="is-divider"></div> <!-- "data-content" can be used to add text --> 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
@@ -46,7 +46,7 @@ export default {
     // changing the current, next, and prev route values in store.js
     // these values control the footer navigation among other areas
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[2].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[1].name)
     this.$store.commit('changePrevRoute', false)
   },
   methods: {

@@ -19,7 +19,7 @@ export default {
         return {
         }
     },
-    created() {},
+    created() {console.log(this.$refs)},
     components: {
         "NavBar": NavBar,
         "NavFooter": NavFooter,

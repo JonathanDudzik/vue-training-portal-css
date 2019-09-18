@@ -41,7 +41,7 @@ export default {
   mounted() {
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
     this.$store.commit('changeNextRoute', false)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[2].children[3].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[2].children[2].name)
   },
 }
 </script>
