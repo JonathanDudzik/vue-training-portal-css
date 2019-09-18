@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-size-1">Welcome</h1>
-      <button class="is-size-5 button"><headphones/><em style="padding-left: 10px;">Listen from here</em></button>
+      <button class="is-size-5 button" @click=playWelcomeContentOne><headphones/><em style="padding-left: 10px;">Listen from here</em></button>
       <div class="is-divider"></div> <!-- "data-content" can be used to add text --> 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
         Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. 
@@ -13,7 +13,7 @@
       <figure 
         ref="instructions" 
         class="image" 
-        @click=playWelcomeContentOne
+        @click=playWelcomeContentTwo
       >
         <img src="../assets/welcome.jpg">
       </figure>
@@ -51,6 +51,17 @@ export default {
   },
   methods: {
     playWelcomeContentOne() {
+      // Taking inspiration from tooltips and webpage guide libraries
+      // Auto scroll the page
+      // Highlight sections and words, and display tips, dialogues, and images
+      // On end, mark the concept as complete (on page), add points, move to and autoplay next guided concept
+      // Each guided concept has it's own start button
+      // Some guided concepts stop at a video or activity and continue again on finish
+      // Escape by scrolling the page manually, clicking an X at the top of the screen, or pressing escape
+      
+    },
+
+    playWelcomeContentTwo() {
       var audio = new Audio(require('../assets/welcome.mp3'));
       var cacfpLogo = new Image(require('../assets/logo.png'));
       const { instructions, logo } = this.$refs
