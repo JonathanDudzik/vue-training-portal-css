@@ -67,7 +67,7 @@ export default {
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
     this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[2].name)
     this.$store.commit('changePrevRoute', this.$router.options.routes[2].children[0].name)
-    tl.playTimeline('boxOne')
+    tl.playTimeline('.boxOne')
   },
 }
 </script>
