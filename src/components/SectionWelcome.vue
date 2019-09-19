@@ -65,8 +65,8 @@ export default {
   },
   mounted() {
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[2].name)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[2].children[0].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[3].children[2].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[3].children[0].name)
     tl.playTimeline('.boxOne')
   },
 }

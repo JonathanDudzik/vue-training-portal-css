@@ -56,9 +56,6 @@
       Stop,
       Repeat,
     },
-    data() {
-      return {}
-    },
   }
 </script>
 

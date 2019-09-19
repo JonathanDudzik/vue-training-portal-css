@@ -3,6 +3,7 @@
     <NavBar/>
     <div class="columns margin-content-top length-full">
         <div class="column is-8 is-offset-2">
+    <ModalHelp v-if="this.$store.state.showHelpModal"/>
             <transition name="fade" mode="out-in">
                 <router-view></router-view>
             </transition>
@@ -13,8 +14,9 @@
 </template>
 
 <script>
-import NavBar from "../components/NavBar"
+import NavBar from '@/components/NavBar'
 import NavFooter from '@/components/NavFooter'
+import ModalHelp from '@/components/ModalHelp'
 
 export default {
     data() {
@@ -25,6 +27,11 @@ export default {
     components: {
         "NavBar": NavBar,
         "NavFooter": NavFooter,
+        "ModalHelp": ModalHelp,
+    },
+    updated() {
+        this.$store.commit('changeActiveMenuLink', this.$router.currentRoute.name)
+        console.log(this.$store.state.activeMenuLink)
     }
 }
 </script>

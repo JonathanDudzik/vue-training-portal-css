@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="slide-left" mode="out-in">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
@@ -15,24 +15,12 @@ export default {}
 </script>
 
 <style lang="scss">
-  .slide-left-enter-active,
-  .slide-left-leave-active {
-    transition-duration: .5s;
-    transition-property: height, opacity, transform;
-    transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
-    overflow: hidden;
+  .fade-enter-active, .fade-leave-active {
+      transition: opacity .3s;
   }
-
-  .slide-left-enter {
-    opacity: 0;
-    transform: translate(100%, 0);
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0;
   }
-
-  .slide-left-leave-active {
-    opacity: 0;
-    transform: translate(-100%, 0);
-  }
-
 
   /******************************************************************** 
   Rules that will come before Bulma's variables 

@@ -9,6 +9,8 @@ export default new Vuex.Store({
     currentRoute: '',
     nextRoute: '',
     prevRoute: '',
+    activeMenuLink: '',
+    showHelpModal: false,
   },
   mutations: {
     changeCurrentRoute (state, value) {
@@ -19,6 +21,12 @@ export default new Vuex.Store({
     },
     changePrevRoute (state, value) {
       state.prevRoute = value
+    },
+    changeActiveMenuLink (state, value) {
+      state.activeMenuLink = value
+    },
+    changeShowHelpModal (state, value) {
+      state.showHelpModal = value
     }
   }
 })

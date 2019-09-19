@@ -46,7 +46,7 @@ export default {
     // changing the current, next, and prev route values in store.js
     // these values control the footer navigation among other areas
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[2].children[1].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[3].children[1].name)
     this.$store.commit('changePrevRoute', false)
   },
   methods: {

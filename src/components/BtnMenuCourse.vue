@@ -14,11 +14,22 @@ export default {
     methods: {
         toggleMenuState() {
             if(this.$router.currentRoute.path == "/menu") {
-                this.$router.push('/course')
-            }else {
+                this.$router.push('/course/' + this.$store.state.activeMenuLink)
+            } else {
                 this.$router.push('/menu')
             }
         }
     }
 }
 </script>
+
+methods: {
+    toggleMenuState() {
+        if(this.$router.currentRoute.path == "/menu") {
+          console.log(this.$store.state.activeMenuLink)
+            this.$router.push(this.$store.state.activeMenuLink)
+        }else {
+            this.$router.push('/menu')
+        }
+    }
+  }

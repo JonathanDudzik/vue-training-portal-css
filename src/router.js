@@ -17,6 +17,10 @@ export default new Router({
       component: Menu
     },
     {
+      path: '/course', 
+      redirect: '/course/instructions'
+    },
+    {
       path: '/course',
       component: Course,
       children: [
@@ -24,11 +28,6 @@ export default new Router({
         {path: "welcome", name: "Welcome", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome.vue'),},
         {path: "regulations", name: "Regulations", component: () => import(/* webpackChunkName: "about" */ './components/SectionRegulations.vue'),},
         {path: "exemptions", name: "Exemptions", component: () => import(/* webpackChunkName: "about" */ './components/SectionExemptions.vue'),},
-
-        // Append non-sequential / direct routes here 
-        // to not mess up the order.
-        {path: "", redirect: "instructions"},
-        {path: "course-help", name: "Course Help", component: () => import(/* webpackChunkName: "about" */ './components/SectionHelp.vue'),},
       ]
     },
     { 

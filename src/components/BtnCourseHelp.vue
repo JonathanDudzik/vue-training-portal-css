@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Help @click="returnToCurrentRoute"/>
+        <Help @click="toggleHelpModal"/>
     </div>
 </template>
 
@@ -12,9 +12,9 @@ export default {
         Help    
     },
     methods: {
-      returnToCurrentRoute() {
-          this.$router.push({ name: 'Course Help', append: true })
-      }
+        toggleHelpModal() {
+            this.$store.commit('changeShowHelpModal', !this.$store.state.showHelpModal)
+        }
     }
 }
 </script>
