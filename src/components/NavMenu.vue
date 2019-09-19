@@ -1,5 +1,4 @@
 <template>
-<!-- <transition name="fade"> -->
 <div class="section">
     <p style="background-color: red;">HELLO WORLD!</p>
     <BtnMenuCourse/>
@@ -16,7 +15,6 @@
                 </li>
         </ul>
     </aside> -->
-<!-- </transition> -->
 </template>
 
 <script>
@@ -62,10 +60,4 @@ import BtnMenuCourse from "../components/BtnMenuCourse"
     //     padding: 10px 20px 10px 20px;
     //     z-index: 2;
     // }
-    .fade-enter-active, .fade-leave-active {
-    transition: opacity 5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-      opacity: 0;
-  }
 </style>

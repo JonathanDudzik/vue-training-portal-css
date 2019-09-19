@@ -1,5 +1,4 @@
 <template>
-<transition name="fade">
   <div>
     <NavBar/>
     <div class="columns margin-content-top length-full">
@@ -11,7 +10,6 @@
         </div>
     </div> 
   </div>
-</transition>
 </template>
 
 <script>
@@ -40,7 +38,7 @@ export default {
         min-height: 80vh;
     }
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
+        transition: opacity .3s;
     }
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
