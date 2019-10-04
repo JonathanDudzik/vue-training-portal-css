@@ -24,7 +24,7 @@ import PauseCircleOutline from 'vue-material-design-icons/PauseCircleOutline.vue
 * When called setTimeline sets the tl object,
 * making it ready to play
 **********************************************************************/
-import animation from '../services/Timelines'
+import { tl, setSlide } from '../services/Timelines'
 export default {
   components: {
     Headphones,
@@ -34,14 +34,16 @@ export default {
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
     this.$store.commit('changeNextRoute', this.$router.options.routes[3].children[2].name)
     this.$store.commit('changePrevRoute', this.$router.options.routes[3].children[0].name)
-    animation.setTimeline(this.$refs.welcomeGsapImageOne) // calls the function that set the tl object up
+
+    const gsapOne = this.$refs.welcomeGsapImageOne
+    setSlide(gsapOne) // calls the function that set the tl object up
   },
   methods: {
     playAnim() {
-      animation.tl.play(0) // this function calls the now ready to play tl object
+      tl.play(0) // this function calls the now ready to play tl object
     },
     pauseAnim() {
-      animation.tl.pause()
+      tl.pause()
     }
   }
 }
