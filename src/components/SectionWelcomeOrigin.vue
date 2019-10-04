@@ -1,0 +1,76 @@
+<template>
+  <section class="section">
+    <div class="container">
+      <div class="tile is-ancestor is-vertical">
+        <div  class="tile box is-12 boxOne">
+          <figure class="image bg">
+            <img src="../assets/background-blue-solid.png">
+          </figure>
+          <div class="text">
+            <span>DHHS</span>
+            <span>NC CACFP</span>
+            <br>
+            <span>Training</span>
+            <span>And</span>
+            <span>Policy</span>
+            <span>Team</span>
+          </div>
+        </div>
+        <div class="tile box is-12 boxTwo">
+          <figure class="image bg">
+            <img src="../assets/background-blue-solid.png">
+          </figure>
+          <div class="text">
+            <span>DHHS</span>
+            <span>NC CACFP</span>
+            <br>
+            <span>Training</span>
+            <span>And</span>
+            <span>Policy</span>
+            <span>Team</span>
+          </div>
+        </div>
+      </div>
+      <button class="is-large" ref="welcomeCaptionsOne" @click="playAnim">Play Animation</button>
+      <button class="is-large" ref="welcomeCaptionsOne" @click="pauseAnim">Pause Animation</button>
+    </div>
+  </section>
+</template>
+
+<script>
+import Headphones from 'vue-material-design-icons/Headphones.vue';
+import PauseCircleOutline from 'vue-material-design-icons/PauseCircleOutline.vue';
+import Captions from '../services/SectionCaptions'
+/* animation imports two objects: the tl object and 
+the function "setTimeline" that when called sets the tl object
+making it ready to play*/
+import animation from '../services/Timelines'
+
+const audio = new Audio(require('../assets/welcome.mp3'));
+
+export default {
+  components: {
+    Headphones,
+    PauseCircleOutline
+  },
+  mounted() {
+    this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[3].children[2].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[3].children[0].name)
+
+    animation.setTimeline() // calls the function that set the tl object up
+  },
+  methods: {
+    playAnim() {
+      animation.tl.play() // this function calls the now ready to play tl object
+    },
+    pauseAnim() {
+      animation.tl.pause()
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+
+</style>

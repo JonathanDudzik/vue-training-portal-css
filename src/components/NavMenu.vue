@@ -8,7 +8,7 @@
             </div>
             <div class="level-right is-size-1">
                 <div class="level-item">
-                <BtnMenuCourse/>
+                    <BtnMenuCourse/>
                 </div>
             </div>
         </nav>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import BtnMenuCourse from "../components/BtnMenuCourse"
+import BtnMenuCourse from "./BtnMenuCourse"
     export default {
         components: {
             "BtnMenuCourse": BtnMenuCourse
@@ -64,6 +64,9 @@ import BtnMenuCourse from "../components/BtnMenuCourse"
         methods: {
             setActive(linkName) {
                 this.$store.commit('changeActiveMenuLink', linkName)
+            },
+            getAdobeCommonInfo() {
+                adobeClient.get()
             }
         }
     } 

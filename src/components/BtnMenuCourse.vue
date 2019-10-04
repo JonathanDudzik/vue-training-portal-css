@@ -22,14 +22,3 @@ export default {
     }
 }
 </script>
-
-methods: {
-    toggleMenuState() {
-        if(this.$router.currentRoute.path == "/menu") {
-          console.log(this.$store.state.activeMenuLink)
-            this.$router.push(this.$store.state.activeMenuLink)
-        }else {
-            this.$router.push('/menu')
-        }
-    }
-  }

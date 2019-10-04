@@ -23,7 +23,6 @@ export default {
         return {
         }
     },
-    created() {console.log(this.$refs)},
     components: {
         "NavBar": NavBar,
         "NavFooter": NavFooter,
@@ -31,7 +30,6 @@ export default {
     },
     updated() {
         this.$store.commit('changeActiveMenuLink', this.$router.currentRoute.name)
-        console.log(this.$store.state.activeMenuLink)
     }
 }
 </script>
