@@ -1,12 +1,8 @@
-export const tl = new TimelineMax({onComplete:console.log('called!'), paused: true});
-export const setSlide = function (slideOne, slideTwo, slideThree, slideFour, audio) {
-    tl.to(audio, 1, {volume: 1, playbackRate: 1})
-        .from(slideOne, 0.5, {opacity: 0, ease:Power1.easeinOut}, "-=1")
-        .to(slideOne, 0.5, {opacity: 1, ease:Power1.easeinOut})
-        .from(slideTwo, 0.5, {opacity: 0, ease:Power1.easeinOut}, "+=2")
-        .to(slideTwo, 0.5, {opacity: 1, ease:Power1.easeinOut})
-        .from(slideThree, 0.5, {opacity: 0, ease:Power1.easeinOut}, "+=4")
-        .to(slideThree, 0.5, {opacity: 1, ease:Power1.easeinOut})
-        .from(slideFour, 0.5, {opacity: 0, ease:Power1.easeinOut}, "+=1")
-        .to(slideFour, 0.5, {opacity: 1, ease:Power1.easeinOut})
+import { TweenMax } from "gsap";
+
+export const tl = new TimelineMax({pause: true});
+export const tlSettings = function(gsapImageOne, gsapAudioOne, testFunc) {
+    tl.add( TweenMax.to(gsapAudioOne, 1, {volume: 1, playbackRate: 1}) )
+    tl.add( TweenMax.to(gsapImageOne, 3, {opacity: 1, ease:Power1.easeinOut}) )
+    tl.add( TweenMax.to(gsapImageOne, 3, {opacity: 0, ease:Power1.easeinOut, delay: 5, onComplete: testFunc}) )
 }

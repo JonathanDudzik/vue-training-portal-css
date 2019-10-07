@@ -28,7 +28,8 @@
 * When called setTimeline sets up the tl object,
 * making it ready to play
 **********************************************************************/
-import { tl, setSlide } from '../services/Timelines'
+import { tl, tlSettings } from '../services/Timelines'
+// import { TweenMax } from "gsap";
 
 export default {
   components: {
@@ -48,9 +49,9 @@ export default {
   },
   destroyed() {
     // always pause and reset media on page change
-    this.gsapAudioOne.pause()
-    tl.clear()
-    tl.pause(0)
+    // this.gsapAudioOne.pause()
+    // tl.clear()
+    // tl.pause(0)
   },
   mounted() {
     // these store commits update the state to the current location of the course
@@ -69,22 +70,20 @@ export default {
     this.gsapTextFour = this.$refs.gsapTextFour
     this.gsapAudioOne = new Audio(require('../assets/welcome.mp3'));
 
-    // calls the function from Timeline.js that set the tl object up
-    setSlide(this.gsapImageOne, this.gsapImageTwo, this.gsapImageThree, this.gsapImageFour, this.gsapAudioOne)
+    // calls the function from Timeline.js that sets the tl object up
+    tlSettings(this.gsapImageOne, this.gsapAudioOne, this.toNextRoute)
   },
   methods: {
     playAnim() {
+      tl.play()
       this.gsapAudioOne.play()
-      tl.play() // this function calls the now ready to play tl object
     },
     pauseAnim() {
       this.gsapAudioOne.pause()
-      tl.pause()
     },
-    // toNextRoute() {
-    //   this.$router.push({ name: this.$store.state.nextRoute, append: true })
-    //   tween.to(window, .5, {scrollTo: 0});
-    // },
+    toNextRoute() {
+      this.$router.push({ name: this.$store.state.nextRoute, append: true })
+    },
   }
 }
 </script>
