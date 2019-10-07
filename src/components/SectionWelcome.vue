@@ -28,7 +28,7 @@
 * When called setTimeline sets up the tl object,
 * making it ready to play
 **********************************************************************/
-import { tl, tlSettings } from '../services/Timelines'
+// import { tl, tlSettings } from '../services/Timelines'
 // import { TweenMax } from "gsap";
 
 export default {
@@ -36,6 +36,7 @@ export default {
   },
   data() {
     return {
+      tl: null,
       gsapImageOne: null,
       gsapImageTwo: null,
       gsapImageThree: null,
@@ -60,6 +61,7 @@ export default {
     this.$store.commit('changePrevRoute', this.$router.options.routes[3].children[0].name)
 
     // defining values found in the vue data function above
+    this.tl = new TimelineMax({pause: true});
     this.gsapImageOne = this.$refs.gsapImageOne
     this.gsapImageTwo = this.$refs.gsapImageTwo
     this.gsapImageThree = this.$refs.gsapImageThree
@@ -71,14 +73,22 @@ export default {
     this.gsapAudioOne = new Audio(require('../assets/welcome.mp3'));
 
     // calls the function from Timeline.js that sets the tl object up
-    tlSettings(this.gsapImageOne, this.gsapAudioOne, this.toNextRoute)
+    // tlSettings(this.gsapImageOne, this.gsapAudioOne, this.toNextRoute)
+  },
+  computed: {
+    setTimeline() {
+      this.tl.add( TweenMax.to(this.gsapAudioOne, 1, {volume: 1, playbackRate: 1}) )
+      this.tl.add( TweenMax.to(this.gsapImageOne, 3, {opacity: 1, ease:Power1.easeinOut}) )
+      this.tl.add( TweenMax.to(this.gsapImageOne, 3, {opacity: 0, ease:Power1.easeinOut, delay: 5, onComplete: this.toNextRoute}) )
+    }
   },
   methods: {
     playAnim() {
-      tl.play()
+      this.setTimeline.play()
       this.gsapAudioOne.play()
     },
     pauseAnim() {
+      this.setTimeline.pause()
       this.gsapAudioOne.pause()
     },
     toNextRoute() {
