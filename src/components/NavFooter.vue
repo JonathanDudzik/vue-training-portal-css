@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container content">
-      <nav class="level is-mobile">
+      <nav class="level">
         <div class="level-left">
           <div v-if="prevRoute">
             <div class="level-item" @click='toPrevRoute'>

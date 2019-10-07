@@ -62,7 +62,7 @@ export default {
     },
 
     playWelcomeContentTwo() {
-      var audio = new Audio(require('../assets/welcome.mp3'));
+      // var audio = new Audio(require('../assets/welcome.mp3'));
       var cacfpLogo = new Image(require('../assets/logo.png'));
       const { instructions, logo } = this.$refs
       const tween = new TimelineMax()

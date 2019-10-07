@@ -72,7 +72,7 @@
     }
 
     &--bottom {
-      background-image: url("../assets/background-blue-solid.png");
+      background-image: url("../assets/background-blue-solid-1.png");
       padding: 10px 30px 10px 30px;
     }
   }

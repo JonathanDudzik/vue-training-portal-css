@@ -1,9 +1,12 @@
-export const tl = new TimelineMax({paused: true});
-export const setSlide = function (ref) {
-        tl.from(ref, 1, {scale:0, ease:Power1.easeinOut}, "in1")
-            .from(ref, 1, {rotation:90, ease:Power1.easeinOut}, "in1")
-            .staggerFrom(" .text span", 1, {y:-50, opacity:0, ease:Elastic.easeOut}, 0.06)
-            .addLabel("out1", "+=1")
-            .staggerTo(" .text span", 1, {opacity:0, y:50, ease:Power1.easein}, -0.06, "out")
-            .to(ref, 1, {scale:0, rotation:-90, ease:Power1.easeinOut})
+export const tl = new TimelineMax({onComplete:console.log('called!'), paused: true});
+export const setSlide = function (slideOne, slideTwo, slideThree, slideFour, audio) {
+    tl.to(audio, 1, {volume: 1, playbackRate: 1})
+        .from(slideOne, 0.5, {opacity: 0, ease:Power1.easeinOut}, "-=1")
+        .to(slideOne, 0.5, {opacity: 1, ease:Power1.easeinOut})
+        .from(slideTwo, 0.5, {opacity: 0, ease:Power1.easeinOut}, "+=2")
+        .to(slideTwo, 0.5, {opacity: 1, ease:Power1.easeinOut})
+        .from(slideThree, 0.5, {opacity: 0, ease:Power1.easeinOut}, "+=4")
+        .to(slideThree, 0.5, {opacity: 1, ease:Power1.easeinOut})
+        .from(slideFour, 0.5, {opacity: 0, ease:Power1.easeinOut}, "+=1")
+        .to(slideFour, 0.5, {opacity: 1, ease:Power1.easeinOut})
 }
