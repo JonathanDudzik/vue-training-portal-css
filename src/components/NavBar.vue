@@ -23,8 +23,9 @@
         </div>
       </div>
       <div class="level-right is-size-4">
-        <!-- <div class="level-item"> tag found in Btn component-->
+        <!-- <div class="level-item"> tag included in Btn components-->
         <BtnPlayPause/>
+        <BtnResetReplay/>
         <BtnCourseHelp/>
       </div>
     </nav>
@@ -36,15 +37,14 @@
   import BtnMenuCourse from "../components/BtnMenuCourse"
   import BtnCourseHelp from "../components/BtnCourseHelp"
   import BtnPlayPause from "../components/BtnPlayPause"
-  import PlayPause from "../../node_modules/vue-material-design-icons/PlayPause.vue"
-  import Repeat from "../../node_modules/vue-material-design-icons/Repeat.vue"
+  import BtnResetReplay from "../components/BtnResetReplay"
 
   export default {
     components: {
       BtnMenuCourse,
       BtnCourseHelp,
       BtnPlayPause,
-      Repeat,
+      BtnResetReplay,
     },
   }
 </script>

@@ -5,12 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    genericEventCounter: 0,
     shortCourseName: "Child Eligiblity Training",
     currentRoute: '',
     nextRoute: '',
     prevRoute: '',
     activeMenuLink: '',
-    playMedia: false,
+    isPlaying: false,
     showHelpModal: false,
   },
   mutations: {
@@ -26,11 +27,14 @@ export default new Vuex.Store({
     changeActiveMenuLink (state, value) {
       state.activeMenuLink = value
     },
-    changePlayMedia (state, value) {
-      state.playMedia = value
+    changeIsPlaying (state, value) {
+      state.isPlaying = value
+    },
+    changeGenericEventCounter (state, value) {
+      state.genericEventCounter = value
     },
     changeShowHelpModal (state, value) {
       state.showHelpModal = value
-    }
-  }
+    },
+  },
 })

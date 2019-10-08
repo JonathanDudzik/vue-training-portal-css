@@ -15,7 +15,7 @@ export default {
     },
     computed: {
         dynamicComponent() {
-            if(this.$store.state.playMedia == false) {
+            if(this.$store.state.isPlaying == true) {
                 return "Pause"
             } else {
                 return "Play"
@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         togglePlayMedia() {
-            this.$store.commit('changePlayMedia', !this.$store.state.playMedia)
+            this.$store.commit('changeIsPlaying', !this.$store.state.isPlaying)
         }
     }
 }
