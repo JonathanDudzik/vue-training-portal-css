@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="level-item"> 
         <Help @click="toggleHelpModal"/>
     </div>
 </template>

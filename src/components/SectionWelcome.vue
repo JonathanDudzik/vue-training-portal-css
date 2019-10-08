@@ -2,57 +2,33 @@
   <section class="section">
     <div class="container">
       <figure>
-        <img ref="gsapImageOne" class="imageOne" src="../assets/background-blue-solid-1.png">
+        <img ref="slide1" class="imageOne" src="../assets/background-blue-solid-1.png">
       </figure>
       <figure>
-        <img ref="gsapImageTwo" class="imageTwo" src="../assets/background-blue-solid-2.png">
+        <img ref="slide2" class="imageTwo" src="../assets/background-blue-solid-2.png">
       </figure>
       <figure>
-        <img ref="gsapImageThree" class="imageThree" src="../assets/background-blue-solid-3.png">
+        <img ref="slide3" class="imageThree" src="../assets/background-blue-solid-3.png">
       </figure>
       <figure>
-        <img ref="gsapImageFour" class="imageFour" src="../assets/background-blue-solid-4.png">
+        <img ref="slide4" class="imageFour" src="../assets/background-blue-solid-4.png">
       </figure>
     </div>
-    <button class="is-large" ref="welcomeCaptionsOne" @click="playAnim">Play Animation</button>
-    <button class="is-large" ref="welcomeCaptionsOne" @click="pauseAnim">Pause Animation</button>
-    <!-- <button class="is-large" ref="welcomeCaptionsOne" @click="toNextRoute">next</button> -->
   </section>
 </template>
 
 <script>
-/*********************************************************************
-* import only the objects from services.js that you need
-* in this case, the tl object and the function "setTimeline".
-*
-* When called setTimeline sets up the tl object,
-* making it ready to play
-**********************************************************************/
-// import { tl, tlSettings } from '../services/Timelines'
-// import { TweenMax } from "gsap";
-
 export default {
-  components: {
-  },
   data() {
     return {
-      tl: null,
-      gsapImageOne: null,
-      gsapImageTwo: null,
-      gsapImageThree: null,
-      gsapImageFour: null,
-      gsapTextOne: null,
-      gsapTextTwo: null,
-      gsapTextThree: null,
-      gsapTextFour: null,
-      gsapAudioOne: null,
+      slideMaster: null,
+      audioOne: null,
     }
   },
   destroyed() {
     // always pause and reset media on page change
-    // this.gsapAudioOne.pause()
-    // tl.clear()
-    // tl.pause(0)
+    this.audio1.pause()
+    this.slideMaster.pause()
   },
   mounted() {
     // these store commits update the state to the current location of the course
@@ -61,38 +37,46 @@ export default {
     this.$store.commit('changePrevRoute', this.$router.options.routes[3].children[0].name)
 
     // defining values found in the vue data function above
-    this.tl = new TimelineMax({pause: true});
-    this.gsapImageOne = this.$refs.gsapImageOne
-    this.gsapImageTwo = this.$refs.gsapImageTwo
-    this.gsapImageThree = this.$refs.gsapImageThree
-    this.gsapImageFour = this.$refs.gsapImageFour
-    this.gsapTextOne = this.$refs.gsapTextOne
-    this.gsapTextTwo = this.$refs.gsapTextTwo
-    this.gsapTextThree = this.$refs.gsapTextThree
-    this.gsapTextFour = this.$refs.gsapTextFour
-    this.gsapAudioOne = new Audio(require('../assets/welcome.mp3'));
+    this.audio1 = new Audio(require('../assets/welcome.mp3'));
+    this.slideMaster = new TimelineMax({paused: true});
+  
+    // it is recommended using functions to create each section 
+    // of your complex timelines.
+    const createSlide = function(slide, delay) {
+      var tl = new TimelineMax();
+      tl.add( TweenMax.to(slide, 1, {opacity: 1 }));
+      tl.add( TweenMax.to(slide, 1, {opacity: 0, delay: delay }));
+      return tl; // it is important to return the tween.
+    }
 
-    // calls the function from Timeline.js that sets the tl object up
-    // tlSettings(this.gsapImageOne, this.gsapAudioOne, this.toNextRoute)
+    // build a sequence out of all the timelines by placing each one in a parent timeline using
+    this.slideMaster.add(createSlide(this.$refs.slide1, 0))
+    this.slideMaster.add(createSlide(this.$refs.slide2, 0.5))
+    this.slideMaster.add(createSlide(this.$refs.slide3, 0.2))
+    this.slideMaster.add(createSlide(this.$refs.slide4, 0.5))
+    this.slideMaster.addCallback(this.toNextRoute, '+=3')
+
   },
   computed: {
-    setTimeline() {
-      this.tl.add( TweenMax.to(this.gsapAudioOne, 1, {volume: 1, playbackRate: 1}) )
-      this.tl.add( TweenMax.to(this.gsapImageOne, 3, {opacity: 1, ease:Power1.easeinOut}) )
-      this.tl.add( TweenMax.to(this.gsapImageOne, 3, {opacity: 0, ease:Power1.easeinOut, delay: 5, onComplete: this.toNextRoute}) )
+    playAll() {
+      return this.$store.state.playMedia
+    }
+  },
+  watch: {
+    playAll() {
+      if(this.$store.state.playMedia == false) {
+        this.slideMaster.play()
+        this.audio1.play()
+      } else {
+        this.slideMaster.pause()
+        this.audio1.pause()
+      }
     }
   },
   methods: {
-    playAnim() {
-      this.setTimeline.play()
-      this.gsapAudioOne.play()
-    },
-    pauseAnim() {
-      this.setTimeline.pause()
-      this.gsapAudioOne.pause()
-    },
     toNextRoute() {
       this.$router.push({ name: this.$store.state.nextRoute, append: true })
+      TweenMax.to(window, .5, {scrollTo: 0});
     },
   }
 }
@@ -166,11 +150,3 @@ export default {
   }
 
 </style>
-
-// const captions = ["Welcome to the North Carolina Child and Adult Care Food Program webinar on Child Eligibility Applications.",
-// "This is an  introductory training for staff who are responsible for CACFP recordkeeping.",
-// "You will learn about child Income Eligibility application requirements, see a sample child Eligibility application form developed by the state agency, and receive tips on maintaining eligibility documentation.",
-// "You will also be taken through some scenarios to help complete the state agency sample form successfully.",
-// "Please note, we have a separate training for adult Income Eligibility applications which can be found at nutritionnc.com, on the Special Nutrition Programs training page. ",
-// "Next, we will discuss how to navigate this webinar."
-// ]

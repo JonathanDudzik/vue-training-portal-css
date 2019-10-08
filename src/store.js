@@ -10,6 +10,7 @@ export default new Vuex.Store({
     nextRoute: '',
     prevRoute: '',
     activeMenuLink: '',
+    playMedia: false,
     showHelpModal: false,
   },
   mutations: {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     changeActiveMenuLink (state, value) {
       state.activeMenuLink = value
+    },
+    changePlayMedia (state, value) {
+      state.playMedia = value
     },
     changeShowHelpModal (state, value) {
       state.showHelpModal = value
