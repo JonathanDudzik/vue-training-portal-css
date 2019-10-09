@@ -1,7 +1,18 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
+    <transition
+      v-bind:css="false" 
+      v-on:before-enter="beforeEnter"
+      v-on:enter="enter"
+      v-on:after-enter="afterEnter"
+      v-on:enter-cancelled="enterCancelled"
+
+      v-on:before-leave="beforeLeave"
+      v-on:leave="leave"
+      v-on:after-leave="afterLeave"
+      v-on:leave-cancelled="leaveCancelled"
+    >
+      <router-view ref="routerview"></router-view>
     </transition>
   </div>
 </template>
@@ -11,7 +22,59 @@
 import TweenMax from 'gsap/all.js'
 import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accordion'
 
-export default {}
+export default {
+  data() {
+    return {
+      tl: null,
+    }
+  },
+  mounted() {
+    this.tl = new TimelineMax()
+  },
+  methods: {
+    /**
+     * -------------
+     * ENTERING
+     * -------------
+     */
+
+    beforeEnter(el) {
+      this.tl.from(el, 2, {opacity: 0});
+    },    
+    enter: function(el, done) {
+      console.log("enter")
+      done()
+    },
+    afterEnter: function(el) {
+      console.log('afterEnter')
+    },
+    enterCancelled: function(el) {
+      console.log('enter Cancelled')
+    },
+
+    /**
+     * 
+     * ---------------
+     * LEAVING
+     * ---------------
+     */
+
+    beforeLeave: function(el) {
+      console.log("B4 leave")
+    },
+    leave: function(el, done) {
+      console.log('leave')
+      done()
+    },
+    afterLeave: function(el) {
+      console.log('after leave')
+    },
+    leaveCancelled: function(el) {
+      console.log('Cancelled')
+    },
+  }
+}
+
 </script>
 
 <style lang="scss">
