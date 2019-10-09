@@ -12,7 +12,7 @@
       v-on:after-leave="afterLeave"
       v-on:leave-cancelled="leaveCancelled"
     >
-      <router-view ref="routerview"></router-view>
+      <router-view></router-view>
     </transition>
   </div>
 </template>
@@ -39,14 +39,14 @@ export default {
      */
 
     beforeEnter(el) {
-      this.tl.from(el, 2, {opacity: 0});
+      el.style.opacity = 0
     },    
     enter: function(el, done) {
-      console.log("enter")
+      this.tl.fromTo(el, 2, {x: -1000}, {x: 0, opacity: 1});
       done()
     },
     afterEnter: function(el) {
-      console.log('afterEnter')
+      el.style.opacity = 1
     },
     enterCancelled: function(el) {
       console.log('enter Cancelled')
@@ -60,14 +60,14 @@ export default {
      */
 
     beforeLeave: function(el) {
-      console.log("B4 leave")
+      el.style.opacity = 0
     },
     leave: function(el, done) {
-      console.log('leave')
+       this.tl.fromTo(el, 2, {x: -1000}, {x: 0, opacity: 1});
       done()
     },
     afterLeave: function(el) {
-      console.log('after leave')
+      el.style.opacity = 1
     },
     leaveCancelled: function(el) {
       console.log('Cancelled')

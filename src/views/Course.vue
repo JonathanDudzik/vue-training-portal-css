@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar/>
-    <div class="columns margin-content-top length-full">
+    <div class="columns length-full">
         <div class="column is-8 is-offset-2">
             <ModalHelp v-if="this.$store.state.showHelpModal"/>
             <transition name="fade" mode="out-in">
