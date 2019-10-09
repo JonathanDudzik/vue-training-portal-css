@@ -1,6 +1,5 @@
 <template>
 <div class="my-nav-bar">
-    
     <nav class="level my-nav-bar--top is-mobile has-background-primary is-marginless">
       <div class="level-left">
         <div class="level-item">
@@ -52,8 +51,9 @@
 <style lang="scss" scoped>
   .my-nav-bar{
     position: fixed;
-    top: 0%;
+    top: 0;
     width: 100%;
+    // padding-top: 1%;
     box-shadow: 0 2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
     z-index: 3;
 

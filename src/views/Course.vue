@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <div class="columns length-full">
-        <div class="column is-8 is-offset-2">
+        <div class="column is-8 is-offset-2 margin-content-top">
             <ModalHelp v-if="this.$store.state.showHelpModal"/>
             <transition name="fade" mode="out-in">
                 <router-view></router-view>

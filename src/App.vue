@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition
-      v-bind:css="false" 
+ 
       v-on:before-enter="beforeEnter"
       v-on:enter="enter"
       v-on:after-enter="afterEnter"
@@ -42,7 +42,7 @@ export default {
       el.style.opacity = 0
     },    
     enter: function(el, done) {
-      this.tl.fromTo(el, 2, {x: -1000}, {x: 0, opacity: 1});
+      this.tl.to(el, 2, {opacity: 1});
       done()
     },
     afterEnter: function(el) {
@@ -63,7 +63,7 @@ export default {
       el.style.opacity = 0
     },
     leave: function(el, done) {
-       this.tl.fromTo(el, 2, {x: -1000}, {x: 0, opacity: 1});
+       this.tl.to(el, 2, {opacity: 1});
       done()
     },
     afterLeave: function(el) {
