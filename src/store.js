@@ -5,8 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // names used throughout portal
+    courseName: "Child Income Eligibility",
+    // this is the array id that is used in all the sections
+    // to navigate the route's children
+    courseRoute: 2,
+    
+    // functional states 
     genericEventCounter: 0,
-    shortCourseName: "Child Eligiblity Training",
+    currentMedia: null,
     currentRoute: '',
     nextRoute: '',
     prevRoute: '',
@@ -15,6 +22,9 @@ export default new Vuex.Store({
     showHelpModal: false,
   },
   mutations: {
+    changeCurrentMedia (state, value) {
+      state.currentMedia = value
+    },
     changeCurrentRoute (state, value) {
       state.currentRoute = value
     },

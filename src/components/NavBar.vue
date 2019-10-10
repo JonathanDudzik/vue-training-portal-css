@@ -16,9 +16,9 @@
     <nav class="level my-nav-bar--bottom has-text-light is-mobile">
       <div class="level-left">
         <div class="level-item">
-            <p class="is-hidden-mobile" style="padding-right: 10px;">{{ this.$store.state.shortCourseName }}</p>
+            <p class="is-hidden-mobile" style="padding-right: 10px;">{{ this.$store.state.courseName }}</p>
             <p class="is-hidden-mobile">/</p>
-            <p class="is-hidden-mobile" style="padding-left: 10px;">{{ this.$store.state.currentRoute }}</p>
+            <p class="" style="padding-left: 10px;">{{ this.$store.state.currentRoute }}</p>
         </div>
       </div>
       <div class="level-right is-size-4">

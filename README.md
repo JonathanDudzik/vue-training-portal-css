@@ -33,3 +33,6 @@ NavMenu = 2
 NavBar = 3
 
 ### Why can I use an object in components:? or use this.options.components.push to add new component options?
+
+Code layout guidance:
+Components, data, computed, methods, lifecycle hooks

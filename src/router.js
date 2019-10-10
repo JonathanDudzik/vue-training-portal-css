@@ -17,15 +17,11 @@ export default new Router({
       component: Menu
     },
     {
-      path: '/course', 
-      redirect: '/course/instructions'
-    },
-    {
       path: '/course',
       component: Course,
       children: [
-        {path: "instructions", name: "Instructions", component: () => import(/* webpackChunkName: "about" */ './components/SectionInstructions.vue'),},
         {path: "welcome", name: "Welcome", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome.vue'),},
+        {path: "welcome1", name: "Welcome1", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome1.vue'),},
         {path: "regulations", name: "Regulations", component: () => import(/* webpackChunkName: "about" */ './components/SectionRegulations.vue'),},
         {path: "exemptions", name: "Exemptions", component: () => import(/* webpackChunkName: "about" */ './components/SectionExemptions.vue'),},
       ]

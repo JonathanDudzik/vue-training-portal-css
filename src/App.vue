@@ -2,6 +2,7 @@
   <div id="app">
     <transition
       mode="out-in"
+      v-bind:css="false"
       v-on:enter="enter"
       v-on:leave="leave"
     >

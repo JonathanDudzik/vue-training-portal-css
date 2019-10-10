@@ -19,10 +19,6 @@ import NavFooter from '@/components/NavFooter'
 import ModalHelp from '@/components/ModalHelp'
 
 export default {
-    data() {
-        return {
-        }
-    },
     components: {
         "NavBar": NavBar,
         "NavFooter": NavFooter,

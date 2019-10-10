@@ -8,7 +8,7 @@
                 communicate with a given server, but the server could not find what was requested.</p>
                 <br><p>In other words... broken.</p>
             </div>
-            <button class="button" @click="goToMenu">Return to main menu</button>
+            <button class="button" @click="goToMenu">Go to main menu</button>
             <button class="button" @click="goToPrevious">Return to previous page</button>
         </div>
     </div>

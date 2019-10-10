@@ -3,7 +3,7 @@
         <nav class="level my-nav-bar is-mobile is-marginless">
             <div class="level-left">
                 <div class="level-item">
-                <img src="../assets/logo.png" alt="logo">
+                    <img src="../assets/logo.png" alt="logo">
                 </div>
             </div>
             <div class="level-right is-size-1">
@@ -14,13 +14,13 @@
         </nav>
         <div class="hero-body">
             <div class="container">
-                <aside class="menu my-main-menu">
+                <aside class="menu">
                     <ul class="menu-list">
                         <h1 class="title is-size-2">{{ courseName }}</h1>
-                        <h2 class="subtitle is-size-3">Browse the Training Topics</h2>
+                        <h2 class="subtitle is-size-3">Browse the training topics</h2>
                         <div class="is-divider"></div>
                         <li 
-                            v-for="link in links" 
+                            v-for="link in childEligibilityLinks" 
                             :key="link.name"
                             @click="setActive(link.name)"
                         >
@@ -35,41 +35,38 @@
 
 <script>
 import BtnMenuCourse from "./BtnMenuCourse"
-    export default {
-        components: {
-            "BtnMenuCourse": BtnMenuCourse
-        },
-        created() {
-            // change a name is router.js to change a name on the list
-            // considering using filter/map/reduce for routes not desired to be listed
-            this.$router.options.routes[3].children.forEach(route => {
-                this.links.push({
-                    name: route.name,
-                    path: '/course/' + route.path, // The 'course' path is also found in router, there should be a better way of doing this... 
-                    
-                })
-            })
-        },
-        data() {
-            return {
-                links: [],
-                courseName: this.$store.state.shortCourseName,
-            }
-        },
-        computed: {
-            activeLink() {
-                return this.$store.state.activeMenuLink    
-            } 
-        },
-        methods: {
-            setActive(linkName) {
-                this.$store.commit('changeActiveMenuLink', linkName)
-            },
-            getAdobeCommonInfo() {
-                adobeClient.get()
-            },
+export default {
+    components: {
+        "BtnMenuCourse": BtnMenuCourse
+    },
+    data() {
+        return {
+            childEligibilityLinks: [],
+            courseName: this.$store.state.courseName,
         }
-    } 
+    },
+    computed: {
+        activeLink() {
+            return this.$store.state.activeMenuLink    
+        } 
+    },
+    methods: {
+        setActive(linkName) {
+            this.$store.commit('changeActiveMenuLink', linkName)
+        },
+    },
+    created() {
+        // change a name is router.js to change a name on the list
+        // consider using filter/map/reduce for routes not desired to be listed
+        this.$router.options.routes[2].children.forEach(route => {
+            // setup the child eligiblity links
+            this.childEligibilityLinks.push({
+                name: route.name,
+                path: '/course/' + route.path, // The 'course' path is also found in router, there should be a better way of doing this... 
+            })
+        })
+    }
+} 
 </script>
 
 <style lang="scss" scoped>
