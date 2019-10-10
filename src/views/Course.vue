@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section class="section" style="padding-left: 0;">
     <NavBar/>
     <div class="columns length-full">
         <div class="column is-8 is-offset-2 margin-content-top">
@@ -10,7 +10,7 @@
             <NavFooter/>
         </div>
     </div> 
-  </div>
+  </section>
 </template>
 
 <script>

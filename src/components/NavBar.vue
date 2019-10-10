@@ -53,7 +53,6 @@
     position: fixed;
     top: 0;
     width: 100%;
-    // padding-top: 1%;
     box-shadow: 0 2px 3px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.1);
     z-index: 3;
 

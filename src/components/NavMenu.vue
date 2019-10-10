@@ -67,7 +67,7 @@ import BtnMenuCourse from "./BtnMenuCourse"
             },
             getAdobeCommonInfo() {
                 adobeClient.get()
-            }
+            },
         }
     } 
 </script>

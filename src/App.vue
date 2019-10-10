@@ -1,16 +1,9 @@
 <template>
   <div id="app">
     <transition
- 
-      v-on:before-enter="beforeEnter"
+      mode="out-in"
       v-on:enter="enter"
-      v-on:after-enter="afterEnter"
-      v-on:enter-cancelled="enterCancelled"
-
-      v-on:before-leave="beforeLeave"
       v-on:leave="leave"
-      v-on:after-leave="afterLeave"
-      v-on:leave-cancelled="leaveCancelled"
     >
       <router-view></router-view>
     </transition>
@@ -19,72 +12,33 @@
 
 <script>
 // global non-component specific imports
-import TweenMax from 'gsap/all.js'
+import Greensock from 'gsap/all.js'
 import BadgerAccordion from '../node_modules/badger-accordion/dist/badger-accordion'
 
 export default {
-  data() {
-    return {
-      tl: null,
-    }
-  },
-  mounted() {
-    this.tl = new TimelineMax()
-  },
   methods: {
-    /**
-     * -------------
-     * ENTERING
-     * -------------
-     */
-
-    beforeEnter(el) {
-      el.style.opacity = 0
-    },    
-    enter: function(el, done) {
-      this.tl.to(el, 2, {opacity: 1});
-      done()
-    },
-    afterEnter: function(el) {
-      el.style.opacity = 1
-    },
-    enterCancelled: function(el) {
-      console.log('enter Cancelled')
-    },
-
-    /**
-     * 
-     * ---------------
-     * LEAVING
-     * ---------------
-     */
-
-    beforeLeave: function(el) {
-      el.style.opacity = 0
-    },
-    leave: function(el, done) {
-       this.tl.to(el, 2, {opacity: 1});
-      done()
-    },
-    afterLeave: function(el) {
-      el.style.opacity = 1
-    },
-    leaveCancelled: function(el) {
-      console.log('Cancelled')
-    },
+    enter(el, done) {
+			TweenMax.fromTo(el, .3, {
+        autoAlpha: 0,
+			}, {
+        autoAlpha: 1,
+				onComplete: done
+			});
+		},
+   leave(el, done) {
+			TweenMax.fromTo(el, .3, {
+        autoAlpha: 1,
+        x: 0,
+			}, {
+        autoAlpha: 0,
+				onComplete: done
+			});
+		}
   }
 }
-
 </script>
 
 <style lang="scss">
-  .fade-enter-active, .fade-leave-active {
-      transition: opacity .3s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-      opacity: 0;
-  }
-
   /******************************************************************** 
   Rules that will come before Bulma's variables 
   *********************************************************************/
