@@ -1,18 +1,22 @@
 <template>
   <section class="section">
-    <div>
-      <figure>
-        <img ref="slide1" class="imageOne" src="../assets/Slide0.jpg">
-      </figure>
-      <figure>
-        <img ref="slide2" class="imageTwo" src="../assets/Slide1.jpg">
-      </figure>
-      <figure>
-        <img ref="slide3" class="imageThree" src="../assets/Slide2.jpg">
-      </figure>
-      <figure>
-        <img ref="slide4" class="imageFour" src="../assets/Slide3.jpg">
-      </figure>
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <figure>
+            <img ref="slide1" class="" src="../assets/Slide0.jpg">
+          </figure>
+          <figure>
+            <img ref="slide2" class="hidden" src="../assets/Slide1.jpg">
+          </figure>
+          <figure>
+            <img ref="slide3" class="hidden" src="../assets/Slide2.jpg">
+          </figure>
+          <figure>
+            <img ref="slide4" class="hidden" src="../assets/Slide3.jpg">
+          </figure>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -117,8 +121,8 @@ export default {
     // GSAP recommends using functions to create each section of your timelines
     const createSlide = function(slide, delay) {
       var tl = new TimelineMax();
-      tl.add( TweenMax.to(slide, 1, {opacity: 1}));
-      tl.add( TweenMax.to(slide, 1, {opacity: 0, delay: delay }));
+      tl.add( TweenMax.to(slide, 1, {opacity: 1, display: 'block'}));
+      tl.add( TweenMax.to(slide, 1, {opacity: 0, display: 'none', delay: delay}));
       return tl;
     }
 
@@ -174,15 +178,20 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   img {
-    opacity: 0;
-    position: absolute;
-    top: 10%;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    display: block;
+    top: 0;
     left: 0;
     right: 0;
-    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 60vh;
+
+    &.hidden {
+      opacity: 0;
+      display: none;
+    }
   }
 </style>
