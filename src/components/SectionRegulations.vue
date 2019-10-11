@@ -1,51 +1,188 @@
 <template>
   <section class="section">
-    <div class="container">
-      
-      <h1 class="title is-size-1">
-        Regulations
-      </h1>
-      <h2 class="is-size-4"><headphones/><em style="padding-left: 10px;">Listen from here</em></h2>
-      <h2 class="is-size-4"><pause-circle-outline/><em style="padding-left: 10px;">Pause Audio</em></h2>
-      <div class="is-divider"></div> <!-- "data-content" can be used to add text -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
-        Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. 
-        Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. 
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales 
-        ligula in libero. Sed dignissim lacinia nunc.</p>
-
-      <h1 class="is-size-1">
-        Heading
-      </h1>
-      <h2 class="is-size-6"><em>&#9738; Listen from here</em></h2>
-      <div class="is-divider"></div> <!-- "data-content" can be used to add text -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. 
-        Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. 
-        Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. 
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales 
-        ligula in libero. Sed dignissim lacinia nunc.</p>
-
+    <div>
+      <figure>
+        <img ref="slide1" class="imageOne" src="../assets/Slide0.jpg">
+      </figure>
+      <figure>
+        <img ref="slide2" class="imageTwo" src="../assets/Slide1.jpg">
+      </figure>
+      <figure>
+        <img ref="slide3" class="imageThree" src="../assets/Slide2.jpg">
+      </figure>
+      <figure>
+        <img ref="slide4" class="imageFour" src="../assets/Slide3.jpg">
+      </figure>
     </div>
   </section>
 </template>
 
 <script>
-import Headphones from 'vue-material-design-icons/Headphones.vue';
-import PauseCircleOutline from 'vue-material-design-icons/PauseCircleOutline.vue';
-
 export default {
-  components: {
-    Headphones,
-    PauseCircleOutline
+  data() {
+    return {
+      slideMaster: null,
+      audioOne: null,
+      audioTwo: null,
+      audioThree: null,
+      audioFour: null,
+      currentAudio: null,
+    }
+  },
+  computed: {
+    resetReplayAll() {
+      return this.$store.state.genericEventCounter
+    },
+    playAll() {
+      return this.$store.state.isPlaying
+    },
+  },
+  watch: {
+    resetReplayAll() { 
+      // 1. stop the gsap slide timeline
+      this.slideMaster.kill()
+      // 2. pause the current audio track
+      this.pauseCurrentAudio()
+      // 3. reset that track to beginning
+      this.currentAudio.currentTime = 0
+      // 4. set the currentAudio to the first track
+      this.setCurrentAudio(this.audioOne)
+      // 5. reset that track to beginning
+      this.currentAudio.currentTime = 0
+      // 6. start the gsap timeline from beginning
+      this.slideMaster.play(0)
+      // 7. start playing audio track
+      this.playCurrentAudio()
+      // 8. make sure pause button is shown
+      this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = true)
+      // there must be an easier way to do this...
+    },
+    playAll() {
+      if(this.$store.state.isPlaying == true) {
+        this.slideMaster.play()
+        this.playCurrentAudio()
+      } else {
+        this.slideMaster.pause()
+        this.pauseCurrentAudio()
+      }
+    }
+  },
+  methods: {
+    setCurrentAudio(src) {
+      this.currentAudio = src
+    },
+    getCurrentAudioTime() {
+      console.log('This audio is ' + this.currentAudio.duration.toFixed(0) + ' seconds long')
+    },
+    playCurrentAudio() {
+      this.currentAudio.play()
+    },
+    pauseCurrentAudio() {
+     this.currentAudio.pause()
+    },
+    toNextRoute() {
+      this.$router.push({ name: this.$store.state.nextRoute, append: true })
+      TweenMax.to(window, .5, {scrollTo: 0});
+    },
   },
   mounted() {
+    [
+      // Initial experience statement functions
+      // RecordService.putStatements(statements.experienced).then(response => response)
+      // RecordService.getStatements().then(response => response)
+    ]
+    
+    /**
+     * 
+     * Updating the current, next, and previous route information in $store.
+     * 
+     */
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[3].name)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[1].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[2].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[0].name)
+    
+    /**
+     * 
+     * Update $data with the audio objects you are using in this file. 
+     * Audio object through $data will be reactive and scoped correctly.
+     * Set the currentAudio Track to the first track.
+     * 
+     */ 
+    this.audioOne = new Audio(require('../assets/0.mp3'))
+    this.audioTwo = new Audio(require('../assets/1.mp3'))
+    this.audioThree = new Audio(require('../assets/2.mp3'))
+    this.audioFour = new Audio(require('../assets/3.mp3'))
+    this.setCurrentAudio(this.audioOne)
+    
+    // GSAP recommends using functions to create each section of your timelines
+    const createSlide = function(slide, delay) {
+      var tl = new TimelineMax();
+      tl.add( TweenMax.to(slide, 1, {opacity: 1}));
+      tl.add( TweenMax.to(slide, 1, {opacity: 0, delay: delay }));
+      return tl;
+    }
+
+    // build a sequence out of all the timelines by placing each one in a parent timeline
+    this.slideMaster = new TimelineMax({paused: true});
+    // Slide one
+    this.slideMaster.call(this.getCurrentAudioTime, this, "slide1")
+    this.slideMaster.add(createSlide(this.$refs.slide1, 10), 'slide1')
+    // Slide Two
+    this.slideMaster.call(this.pauseCurrentAudio, this, "slide2")
+    this.slideMaster.call(this.setCurrentAudio, [ this.audioTwo ], this, "slide2")
+    this.slideMaster.call(this.getCurrentAudioTime, this, "slide2")
+    this.slideMaster.call(this.playCurrentAudio, this, "slide2")
+    this.slideMaster.add(createSlide(this.$refs.slide2, 3), 'slide2')
+    // Slide Three
+    this.slideMaster.add(createSlide(this.$refs.slide3, 3), 'slide3')
+    // Slide Four
+    this.slideMaster.add(createSlide(this.$refs.slide4, 5), 'slide4')
+    // Callback on end moves to next route
+    this.slideMaster.addCallback(this.toNextRoute, '+=3')
+
+    /**
+     * 
+     * Course Start up function runs once.
+     * Autoplay of audio/video may not be allowed after refreshing browser.
+     * The below function checks to see if autoplay is allowed.
+     * If autoplay is allowed, course will function as usual.
+     * If autoplay is NOT allowed, the course will wait for user interaction.
+     *
+     */
+    const promise = this.currentAudio.play()
+    if (promise !== undefined) {
+      promise.then(_ => {
+        console.log('Autoplay is allowed')
+        this.slideMaster.play()
+        this.playCurrentAudio()
+        this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = true)
+      }).catch(error => {
+        console.log('Autoplay not allowed')
+      })
+    }
+  },
+  beforeDestroy() {
+    /**
+     * 
+     * Cleanup functions before moving to next page.
+     * 
+     */
+    this.slideMaster.kill()
+    this.pauseCurrentAudio()
+    this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = false) // make sure isPlaying state is changed
   },
 }
 </script>
 
 <style lang="scss">
-
+  img {
+    opacity: 0;
+    position: absolute;
+    top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 55%;
+  }
 </style>

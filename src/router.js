@@ -21,7 +21,6 @@ export default new Router({
       component: Course,
       children: [
         {path: "welcome", name: "Welcome", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome.vue'),},
-        {path: "welcome1", name: "Welcome1", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome1.vue'),},
         {path: "regulations", name: "Regulations", component: () => import(/* webpackChunkName: "about" */ './components/SectionRegulations.vue'),},
         {path: "exemptions", name: "Exemptions", component: () => import(/* webpackChunkName: "about" */ './components/SectionExemptions.vue'),},
       ]

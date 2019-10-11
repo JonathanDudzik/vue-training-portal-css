@@ -13,7 +13,6 @@ export default new Vuex.Store({
     
     // functional states 
     genericEventCounter: 0,
-    currentMedia: null,
     currentRoute: '',
     nextRoute: '',
     prevRoute: '',
