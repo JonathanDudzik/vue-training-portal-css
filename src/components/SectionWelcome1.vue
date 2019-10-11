@@ -37,12 +37,12 @@ export default {
     },
   },
   watch: {
-    resetReplayAll() {
-      this.slideMaster.pause(0)
+    resetReplayAll() { 
+      // there must be an easier way to do this...
       this.slideMaster.kill()
       this.pauseStoreAudio()
       this.$store.state.currentMedia.currentTime = 0
-      this.defineStoreAudio(this.audioOne)
+      this.setStoreAudio(this.audioOne)
       this.$store.state.currentMedia.currentTime = 0
       this.slideMaster.play(0)
       this.playStoreAudio()
@@ -59,14 +59,16 @@ export default {
     }
   },
   methods: {
-    defineStoreAudio(src) {
-     this.$store.commit('changeCurrentMedia', src)
-      if(this.$store.state.currentMedia.duration) { // Keeps this value from log of "NaN"
-        console.log('this audio is ' + this.$store.state.currentMedia.duration + ' long')
-      }
+    setStoreAudio(src) {
+      // TRY TO PLAY FROM YOUR LOCAL DATA INSTEAD OF USING THE STORE..?
+      // this.$store.commit('changeCurrentMedia', src) 
     },
-    playStoreAudio() {
-     this.$store.state.currentMedia.play()
+    getStoreAudioTime() {
+        console.log('this audio is ' + this.$store.state.currentMedia.duration + ' long')
+    },
+    playStoreAudio(src) {
+      src.play
+    //  this.$store.state.currentMedia.play()
     },
     pauseStoreAudio() {
      this.$store.state.currentMedia.pause()
@@ -97,17 +99,27 @@ export default {
 
     // build a sequence out of all the timelines by placing each one in a parent timeline
     this.slideMaster = new TimelineMax({paused: true});
-    this.slideMaster.call(this.defineStoreAudio, [ this.audioOne ])
-    this.slideMaster.call(this.playStoreAudio)
-    this.slideMaster.add(createSlide(this.$refs.slide1, 10.30))
-    this.slideMaster.call(this.defineStoreAudio, [ this.audioTwo ])
-    this.slideMaster.call(this.playStoreAudio)
-    this.slideMaster.add(createSlide(this.$refs.slide2, 22))
-    this.slideMaster.add(createSlide(this.$refs.slide3, 0.2))
-    this.slideMaster.add(createSlide(this.$refs.slide4, 0.5))
+    this.slideMaster.call(this.getStoreAudioTime, this, "slide1") // calls must come before the label they are called on
+    this.slideMaster.add(createSlide(this.$refs.slide1, 3), 'slide1')
+    this.slideMaster.call(this.pauseStoreAudio, this, "slide2")
+    this.slideMaster.call(this.setStoreAudio, [ this.audioTwo ], this, "slide2")
+    this.slideMaster.call(this.playStoreAudio, this, "slide2")
+    this.slideMaster.add(createSlide(this.$refs.slide2, 3), 'slide2')
+    this.slideMaster.add(createSlide(this.$refs.slide3, 3), 'slide3')
+    this.slideMaster.add(createSlide(this.$refs.slide4, 5), 'slide4')
     this.slideMaster.addCallback(this.toNextRoute, '+=3')
+
+    // set initially set to control before gsap plays
+    this.setStoreAudio(this.audioOne)
+    this.$store.state.currentMedia.oncanplaythrough = (event) => {
+      console.log('Video can start');
+      this.slideMaster.play()
+      this.playStoreAudio()
+    };
   },
   beforeDestroy() {
+    this.slideMaster.kill()
+    this.pauseStoreAudio()
     this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = false) // make sure isPlaying state is changed
   },
 }
@@ -174,5 +186,4 @@ export default {
     right: 0;
     width: 55%;
   }
-
 </style>
