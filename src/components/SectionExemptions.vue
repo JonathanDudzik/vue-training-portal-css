@@ -3,17 +3,30 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-         <figure>
-            <img ref="slide1" class="" src="../assets/Slide0.jpg">
+          <!-- START TEXT -->
+          <p ref="text0">NC Department of Health and Human Services</p>
+          <p ref="text1">How to Complete a Corrective Action Document</p>
+          <p ref="text2">Child and Adult Care Food Program - Nutrition Services Branch - Division of Public Health</p>
+        </div>
+        <div class="column">
+          <!-- START IMAGES -->
+          <figure class=imageCanvas>
+            <img ref="image0" class="image0" src="../assets/canvas.jpg">
           </figure>
           <figure>
-            <img ref="slide2" class="hidden" src="../assets/Slide1.jpg">
+            <img ref="image1" class="image1 hidden" src="../assets/scene1.png">
           </figure>
           <figure>
-            <img ref="slide3" class="hidden" src="../assets/Slide2.jpg">
+            <img ref="image2" class="image2 hidden" src="../assets/scene2.jpg">
           </figure>
           <figure>
-            <img ref="slide4" class="hidden" src="../assets/Slide3.jpg">
+            <img ref="image3" class="image3 hidden" src="../assets/scene3.png">
+          </figure>
+          <figure>
+            <img ref="image4" class="image4 hidden" src="../assets/scene4.jpg">
+          </figure>
+          <figure>
+            <img ref="image5" class="image5 hidden" src="../assets/scene5.png">
           </figure>
         </div>
       </div>
@@ -119,28 +132,25 @@ export default {
     this.setCurrentAudio(this.audioOne)
     
     // GSAP recommends using functions to create each section of your timelines
-    const createSlide = function(slide, delay) {
-      var tl = new TimelineMax();
-      tl.add( TweenMax.to(slide, 1, {opacity: 1, display: 'block'}));
-      tl.add( TweenMax.to(slide, 1, {opacity: 0, display: 'none', delay: delay }));
-      return tl;
+    const scene1 = function(obj) {
+      var image1 = new TimelineMax();
+      image1.add( TweenMax.to(obj, 1, {opacity: 1, display: 'block'}));
+      image1.add( TweenMax.to(obj, 1, {x: 2000, y: 100, delay: 1 }));
+      image1.add( TweenMax.to(obj, 1, {x: 0, opacity: 0, display: 'none'}));
+      return image1;
+    }
+    const scene2 = function(obj) {
+      var image1 = new TimelineMax();
+      image1.add( TweenMax.to(obj, 1, {opacity: 1, display: 'block'}));
+      image1.add( TweenMax.to(obj, 1, {x: 20, y: 100, delay: 1 }));
+      image1.add( TweenMax.to(obj, 1, {x: 0, opacity: 0, display: 'none'}));
+      return image1;
     }
 
     // build a sequence out of all the timelines by placing each one in a parent timeline
     this.slideMaster = new TimelineMax({paused: true});
-    // Slide one
-    this.slideMaster.call(this.getCurrentAudioTime, this, "slide1")
-    this.slideMaster.add(createSlide(this.$refs.slide1, 10), 'slide1')
-    // Slide Two
-    this.slideMaster.call(this.pauseCurrentAudio, this, "slide2")
-    this.slideMaster.call(this.setCurrentAudio, [ this.audioTwo ], this, "slide2")
-    this.slideMaster.call(this.getCurrentAudioTime, this, "slide2")
-    this.slideMaster.call(this.playCurrentAudio, this, "slide2")
-    this.slideMaster.add(createSlide(this.$refs.slide2, 3), 'slide2')
-    // Slide Three
-    this.slideMaster.add(createSlide(this.$refs.slide3, 3), 'slide3')
-    // Slide Four
-    this.slideMaster.add(createSlide(this.$refs.slide4, 5), 'slide4')
+    this.slideMaster.add(scene1(this.$refs.image1))
+    this.slideMaster.add(scene2(this.$refs.image2))
     // Callback on end moves to next route
     this.slideMaster.addCallback(this.toNextRoute, '+=3')
 
@@ -179,15 +189,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  img {
+  div.column {
     position: relative;
-    display: block;
+    height: 60vh;
+  }
+  figure.imageCanvas {
+    position: relative;
+  }
+  img {
+    position: absolute;
+    // display: block;
     top: 0;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    max-height: 60vh;
+    max-width: 100%;
+    max-height: 100%;
 
     &.hidden {
       opacity: 0;
