@@ -1,22 +1,15 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <figure>
-            <img ref="slide1" class="" src="../assets/Slide0.jpg">
-          </figure>
-          <figure>
-            <img ref="slide2" class="hidden" src="../assets/Slide1.jpg">
-          </figure>
-          <figure>
-            <img ref="slide3" class="hidden" src="../assets/Slide2.jpg">
-          </figure>
-          <figure>
-            <img ref="slide4" class="hidden" src="../assets/Slide3.jpg">
-          </figure>
-        </div>
-      </div>
+  <section>
+    <div class="container content">
+      <h1 ref="gsapObjOne" class="gsap-object one">How to complete a Corrective Action Document</h1>
+      <h2 ref="gsapObjTwo" class="gsap-object two">NC Department of Health and Human Services</h2>
+      <h2 ref="gsapObjThree" class="gsap-object three">Child and Adult Care Food Program</h2>
+      <figure>
+        <img ref="gsapObjFour" class="gsap-object four" src="../assets/logo.png">
+      </figure>
+      <figure>
+        <img ref="gsapObjFive" class="gsap-object five" src="../assets/scene2.jpg">
+      </figure>
     </div>
   </section>
 </template>
@@ -119,28 +112,44 @@ export default {
     this.setCurrentAudio(this.audioOne)
     
     // GSAP recommends using functions to create each section of your timelines
-    const createSlide = function(slide, delay) {
-      var tl = new TimelineMax();
-      tl.add( TweenMax.to(slide, 1, {opacity: 1, display: 'block'}));
-      tl.add( TweenMax.to(slide, 1, {opacity: 0, display: 'none', delay: delay}));
-      return tl;
+    const tlOne = function(objRef) {
+      const gsapObj = new TimelineMax();
+      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
+      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
+      return gsapObj
     }
-
+    const tlTwo = function(objRef) {
+      const gsapObj = new TimelineMax();
+      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
+      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
+      return gsapObj
+    }
+    const tlThree = function(objRef) {
+      const gsapObj = new TimelineMax();
+      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
+      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
+      return gsapObj
+    }
+    const tlFour = function(objRef) {
+      const gsapObj = new TimelineMax();
+      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
+      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
+      return gsapObj
+    }
+    const tlFive = function(objRef) {
+      const gsapObj = new TimelineMax();
+      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
+      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
+      return gsapObj
+    }
+  
     // build a sequence out of all the timelines by placing each one in a parent timeline
     this.slideMaster = new TimelineMax({paused: true});
-    // Slide one
-    this.slideMaster.call(this.getCurrentAudioTime, this, "slide1")
-    this.slideMaster.add(createSlide(this.$refs.slide1, 10), 'slide1')
-    // Slide Two
-    this.slideMaster.call(this.pauseCurrentAudio, this, "slide2")
-    this.slideMaster.call(this.setCurrentAudio, [ this.audioTwo ], this, "slide2")
-    this.slideMaster.call(this.getCurrentAudioTime, this, "slide2")
-    this.slideMaster.call(this.playCurrentAudio, this, "slide2")
-    this.slideMaster.add(createSlide(this.$refs.slide2, 3), 'slide2')
-    // Slide Three
-    this.slideMaster.add(createSlide(this.$refs.slide3, 3), 'slide3')
-    // Slide Four
-    this.slideMaster.add(createSlide(this.$refs.slide4, 5), 'slide4')
+    this.slideMaster.add(tlOne(this.$refs.gsapObjOne, 3))
+    this.slideMaster.add(tlTwo(this.$refs.gsapObjTwo, 3))
+    this.slideMaster.add(tlThree(this.$refs.gsapObjThree, 3))
+    this.slideMaster.add(tlFour(this.$refs.gsapObjFour, 3))
+    this.slideMaster.add(tlFive(this.$refs.gsapObjFive, 3))
     // Callback on end moves to next route
     this.slideMaster.addCallback(this.toNextRoute, '+=3')
 
@@ -179,19 +188,35 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  img {
+  div.container {
     position: relative;
+    height: 60vw;
+    width: 70vw;
+    border: solid;
+  }
+  .gsap-object {
     display: block;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 60vh;
+    position: absolute;
 
-    &.hidden {
-      opacity: 0;
-      display: none;
+    &.one{
+      font-size: 3vw;
+      top: 10%;
+    }
+    &.two{
+      font-size: 3vw;
+      bottom: 10%;
+    }
+    &.three{
+      font-size: 3vw;
+      top: 30%;
+    }
+    &.four{
+      width: 30%;
+      top: 1%;
+    }
+    &.five{
+      width: 30%;
+      top: 50%;
     }
   }
 </style>

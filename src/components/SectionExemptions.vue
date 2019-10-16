@@ -189,9 +189,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  div.column {
+  div.columns {
     position: relative;
     height: 60vh;
+  }
+  div.column {
+    position: relative;
+    height: 50%;
   }
   figure.imageCanvas {
     position: relative;
