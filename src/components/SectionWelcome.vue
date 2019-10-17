@@ -1,15 +1,27 @@
 <template>
   <section>
     <div class="container content">
-      <h1 ref="gsapObjOne" class="gsap-object one">How to complete a Corrective Action Document</h1>
-      <h2 ref="gsapObjTwo" class="gsap-object two">NC Department of Health and Human Services</h2>
-      <h2 ref="gsapObjThree" class="gsap-object three">Child and Adult Care Food Program</h2>
-      <figure>
-        <img ref="gsapObjFour" class="gsap-object four" src="../assets/logo.png">
-      </figure>
-      <figure>
-        <img ref="gsapObjFive" class="gsap-object five" src="../assets/scene2.jpg">
-      </figure>
+
+      <div ref="elSceneOne">
+        <h1 class="gsap-object one">How to complete a Corrective Action Document</h1>
+        <h2 class="gsap-object two">NC DHHS</h2>
+        <h2 class="gsap-object three">Child and Adult Care Food Program</h2>
+        <p class="gsap-object three">Nutrition Services Branch</p>
+        <p class="gsap-object three">Division of public health</p>
+        <figure>
+          <img ref="elF" class="gsap-object five" src="../assets/nc-logo.jpg">
+        </figure>
+      </div>
+      
+      <div ref="elSceneTwo">
+        <h1 class="gsap-object one">This content is second</h1>
+        <h2 class="gsap-object two">Learning Obejctives!</h2>
+        <p class="gsap-object three">TESTING!</p>
+        <figure>
+          <img ref="elF" class="gsap-object five" src="../assets/logo.png">
+        </figure>
+      </div>
+    
     </div>
   </section>
 </template>
@@ -18,11 +30,15 @@
 export default {
   data() {
     return {
-      slideMaster: null,
+      tlMaster: null,
       audioOne: null,
       audioTwo: null,
       audioThree: null,
       audioFour: null,
+      sceneOne: [],
+      sceneTwo: [],
+      sceneThree: [],
+      sceneFour: [],
       currentAudio: null,
     }
   },
@@ -35,9 +51,14 @@ export default {
     },
   },
   watch: {
+    /**
+     * 
+     * These functions are dependent on the computed properties
+     * 
+     */
     resetReplayAll() { 
       // 1. stop the gsap slide timeline
-      this.slideMaster.kill()
+      this.tlMaster.kill()
       // 2. pause the current audio track
       this.pauseCurrentAudio()
       // 3. reset that track to beginning
@@ -47,7 +68,7 @@ export default {
       // 5. reset that track to beginning
       this.currentAudio.currentTime = 0
       // 6. start the gsap timeline from beginning
-      this.slideMaster.play(0)
+      this.tlMaster.play(0)
       // 7. start playing audio track
       this.playCurrentAudio()
       // 8. make sure pause button is shown
@@ -56,10 +77,10 @@ export default {
     },
     playAll() {
       if(this.$store.state.isPlaying == true) {
-        this.slideMaster.play()
+        this.tlMaster.play()
         this.playCurrentAudio()
       } else {
-        this.slideMaster.pause()
+        this.tlMaster.pause()
         this.pauseCurrentAudio()
       }
     }
@@ -100,58 +121,52 @@ export default {
 
     /**
      * 
-     * Update $data with the audio objects you are using in this file. 
-     * Audio object through $data will be reactive and scoped correctly.
-     * Set the currentAudio Track to the first track.
+     * Populate $data with objects on this page. 
+     * Objects through $data will be reactive and scoped correctly.
      * 
      */ 
-    this.audioOne = new Audio(require('../assets/0.mp3'))
-    this.audioTwo = new Audio(require('../assets/1.mp3'))
-    this.audioThree = new Audio(require('../assets/2.mp3'))
-    this.audioFour = new Audio(require('../assets/3.mp3'))
+    this.audioOne = new Audio(require('../assets/1.mp3'))
+    this.audioTwo = new Audio(require('../assets/2.mp3'))
+    this.audioThree = new Audio(require('../assets/3.mp3'))
+    this.audioFour = new Audio(require('../assets/4.mp3'))
+    this.sceneOne = [this.$refs.elSceneOne]
+    this.sceneTwo = [this.$refs.elSceneTwo]
+    // Set the currentAudio Track to the first track.
     this.setCurrentAudio(this.audioOne)
-    
-    // GSAP recommends using functions to create each section of your timelines
-    const tlOne = function(objRef) {
-      const gsapObj = new TimelineMax();
-      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
-      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
-      return gsapObj
-    }
-    const tlTwo = function(objRef) {
-      const gsapObj = new TimelineMax();
-      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
-      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
-      return gsapObj
-    }
-    const tlThree = function(objRef) {
-      const gsapObj = new TimelineMax();
-      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
-      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
-      return gsapObj
-    }
-    const tlFour = function(objRef) {
-      const gsapObj = new TimelineMax();
-      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
-      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
-      return gsapObj
-    }
-    const tlFive = function(objRef) {
-      const gsapObj = new TimelineMax();
-      gsapObj.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
-      gsapObj.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block'}));
-      return gsapObj
+
+
+    /**
+     * 
+     * GSAP recommends using functions to create each timeline section of your timelines
+     * 
+     */
+    const tlScenes = function(objRef, delay) {
+      const gsap = new TimelineMax();
+      gsap.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
+      gsap.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block', delay: delay}));
+      gsap.add( TweenMax.to(objRef, 1, {opacity: 0, display: 'none'}));
+      return gsap
     }
   
-    // build a sequence out of all the timelines by placing each one in a parent timeline
-    this.slideMaster = new TimelineMax({paused: true});
-    this.slideMaster.add(tlOne(this.$refs.gsapObjOne, 3))
-    this.slideMaster.add(tlTwo(this.$refs.gsapObjTwo, 3))
-    this.slideMaster.add(tlThree(this.$refs.gsapObjThree, 3))
-    this.slideMaster.add(tlFour(this.$refs.gsapObjFour, 3))
-    this.slideMaster.add(tlFive(this.$refs.gsapObjFive, 3))
+    /**
+     * 
+     * Build a sequence out of all the timelines by placing each one in a parent timeline
+     * 
+     */ 
+    this.tlMaster = new TimelineMax({paused: true});
+    // First scene start
+    this.tlMaster.call(this.getCurrentAudioTime, this, "elOne")
+    this.tlMaster.add(tlScenes([this.sceneOne], 19), 'elOne')
+    // Second scene start
+    this.tlMaster.call(this.pauseCurrentAudio, this, "gsapTwo")
+    this.tlMaster.call(this.setCurrentAudio, [ this.audioTwo ], this, "gsapTwo")
+    this.tlMaster.call(this.getCurrentAudioTime, this, "gsapTwo")
+    this.tlMaster.call(this.playCurrentAudio, this, "gsapTwo")
+    this.tlMaster.add(tlScenes([this.sceneTwo], 1), 'gsapTwo')
+    
+
     // Callback on end moves to next route
-    this.slideMaster.addCallback(this.toNextRoute, '+=3')
+    this.tlMaster.addCallback(this.toNextRoute, '+=3')
 
     /**
      * 
@@ -166,7 +181,7 @@ export default {
     if (promise !== undefined) {
       promise.then(_ => {
         console.log('Autoplay is allowed')
-        this.slideMaster.play()
+        this.tlMaster.play()
         this.playCurrentAudio()
         this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = true)
       }).catch(error => {
@@ -180,7 +195,7 @@ export default {
      * Cleanup functions before moving to next page.
      * 
      */
-    this.slideMaster.kill()
+    this.tlMaster.kill()
     this.pauseCurrentAudio()
     this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = false) // make sure isPlaying state is changed
   },
@@ -188,35 +203,35 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  div.container {
-    position: relative;
-    height: 60vw;
-    width: 70vw;
-    border: solid;
-  }
-  .gsap-object {
-    display: block;
-    position: absolute;
+  // div.container {
+  //   position: relative;
+  //   height: 40vw;
+  //   width: 110vw;
+  //   // border: solid;
+  // }
+  // .gsap-object {
+  //   display: block;
+  //   position: absolute;
 
-    &.one{
-      font-size: 3vw;
-      top: 10%;
-    }
-    &.two{
-      font-size: 3vw;
-      bottom: 10%;
-    }
-    &.three{
-      font-size: 3vw;
-      top: 30%;
-    }
-    &.four{
-      width: 30%;
-      top: 1%;
-    }
-    &.five{
-      width: 30%;
-      top: 50%;
-    }
-  }
+  //   &.one{
+  //     font-size: 3vw;
+  //     top: 10%;
+  //   }
+  //   &.two{
+  //     font-size: 3vw;
+  //     bottom: 10%;
+  //   }
+  //   &.three{
+  //     font-size: 3vw;
+  //     top: 30%;
+  //   }
+  //   &.four{
+  //     width: 30%;
+  //     top: 1%;
+  //   }
+  //   &.five{
+  //     width: 30%;
+  //     top: 50%;
+  //   }
+  // }
 </style>
