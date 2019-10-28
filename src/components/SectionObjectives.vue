@@ -1,17 +1,21 @@
 <template>
   <section>
     <div ref="htmlSceneOne" class="container">
-      <div class="columns has-text-centered">
+      <div class="columns">
         <div class="column is-12">
-          <h1 class="title">How to complete a Corrective Action Document</h1>
-          <h2 class="subtitle">NC DHHS Child and Adult Care Food Program<br>Nutrition Services Branch | Division of public health</h2>
+          <h1 class="title">Learning Objectives</h1>
+          <h2 class="subtitle">Participants will be able to:</h2>
+          
         </div>
       </div>
       <div class="columns">
-        <div class="column is-4 is-offset-4">
-          <figure>
-            <img class="gsap-object five" src="../assets/nc-logo.jpg">
-          </figure>
+        <div class="column is-8 is-offset-1">
+          <ol>
+              <li>Explain what a Corrective Action Document is</li>
+              <li>State why a Corrective Action Document is necessary</li>
+              <li>Identify components of a Corrective Action Document</li>
+              <li>Answer key questions for completing a Corrective Action Document</li>
+          </ol>
         </div>
       </div>
     </div>
@@ -106,8 +110,8 @@ export default {
      * 
      */
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[1].name)
-    this.$store.commit('changePrevRoute', false)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[2].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[0].name)
 
     /**
      * 
@@ -115,7 +119,7 @@ export default {
      * Objects through $data will be reactive and scoped correctly.
      * 
      */ 
-    this.audioOne = new Audio(require('../assets/1.mp3'))
+    this.audioOne = new Audio(require('../assets/2.mp3'))
     this.sceneOne = [this.$refs.htmlSceneOne]
     // Set the currentAudio Track to the first track.
     this.setCurrentAudio(this.audioOne)
@@ -141,7 +145,7 @@ export default {
      */ 
     this.tlMaster = new TimelineMax({paused: true});
     this.tlMaster.call(this.getCurrentAudioDuration, this, "elOne")
-    this.tlMaster.add(tlScenes([this.sceneOne], 19), 'elOne')
+    this.tlMaster.add(tlScenes([this.sceneOne], 24), 'elOne')
     // Callback on end moves to next route
     this.tlMaster.addCallback(this.toNextRoute, '+=3')
 

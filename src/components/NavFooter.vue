@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section my-footer has-background-white-ter">
     <div class="container content">
       <nav class="level">
         <div class="level-left">
@@ -52,8 +52,9 @@ export default {
 <style lang="scss" scoped>
 .my-footer {
   position: fixed;
-  top: 60vh;
-  left: 0vh;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
 }
 
 .level-item {
