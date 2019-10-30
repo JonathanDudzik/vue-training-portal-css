@@ -22,7 +22,9 @@ export default new Router({
       children: [
         {path: "welcome", name: "Welcome", component: () => import(/* webpackChunkName: "about" */ './components/SectionWelcome.vue'),},
         {path: "objectives", name: "Objectives", component: () => import(/* webpackChunkName: "about" */ './components/SectionObjectives.vue'),},
-        {path: "exemptions", name: "Exemptions", component: () => import(/* webpackChunkName: "about" */ './components/SectionExemptions.vue'),},
+        {path: "cad-definition", name: "CAD Definition", component: () => import(/* webpackChunkName: "about" */ './components/SectionCadDefine.vue'),},
+        {path: "cad-regulatations", name: "CAD Regulations", component: () => import(/* webpackChunkName: "about" */ './components/SectionCadRegs.vue'),},
+        {path: "cad-process", name: "How the Process Works", component: () => import(/* webpackChunkName: "about" */ './components/SectionProcessTimeline.vue'),},
       ]
     },
     { 

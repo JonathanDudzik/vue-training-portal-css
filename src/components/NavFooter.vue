@@ -1,5 +1,5 @@
 <template>
-  <section class="section my-footer has-background-white-ter">
+  <section class="section has-text-light my-footer">
     <div class="container content">
       <nav class="level">
         <div class="level-left">
@@ -55,6 +55,10 @@ export default {
   bottom: 0;
   left: 0;
   width: 100vw;
+  background-image: url("../assets/background-blue-solid-1.png");
+  padding-top: 2%;
+  padding-bottom: 2%;
+
 }
 
 .level-item {

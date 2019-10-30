@@ -26,7 +26,7 @@ export default {
 				onComplete: done
 			});
 		},
-   leave(el, done) {
+    leave(el, done) {
 			TweenMax.fromTo(el, .3, {
         autoAlpha: 1,
         x: 0,
@@ -68,6 +68,7 @@ export default {
   @import "../node_modules/bulma/sass/layout/_all.sass";
   @import "../node_modules/bulma/sass/grid/_all.sass";
   @import "../node_modules/bulma-divider/dist/css/bulma-divider.sass";
+  @import "../node_modules/bulma-timeline/dist/css/bulma-timeline.sass";
 
   @import "../node_modules/badger-accordion/dist/badger-accordion.scss";
   @import "../node_modules/vue-material-design-icons/styles.css";

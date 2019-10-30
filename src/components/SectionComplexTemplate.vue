@@ -1,16 +1,32 @@
 <template>
-  <section>
-    <div ref="htmlSceneOne" class="container">
-      <div class="columns has-text-centered">
-        <div class="column is-12">
-          <h1 class="title is-size-1-desktop">How to complete a Corrective Action Document</h1>
-          <h2 class="subtitle is-size-2-desktop">NC DHHS Child and Adult Care Food Program<br>Nutrition Services Branch | Division of public health</h2>
-        </div>
-      </div>
+  <section class="section">
+    <div class="container">
       <div class="columns">
-        <div class="column is-4 is-offset-4">
+        <div class="column">
+          <!-- START TEXT -->
+          <p ref="text0">NC Department of Health and Human Services</p>
+          <p ref="text1">How to Complete a Corrective Action Document</p>
+          <p ref="text2">Child and Adult Care Food Program - Nutrition Services Branch - Division of Public Health</p>
+        </div>
+        <div class="column">
+          <!-- START IMAGES -->
+          <figure class=imageCanvas>
+            <img ref="image0" class="image0" src="#">
+          </figure>
           <figure>
-            <img class="gsap-object five" src="../assets/nc-logo.jpg">
+            <img ref="image1" class="image1 hidden" src="#">
+          </figure>
+          <figure>
+            <img ref="image2" class="image2 hidden" src="#">
+          </figure>
+          <figure>
+            <img ref="image3" class="image3 hidden" src="#">
+          </figure>
+          <figure>
+            <img ref="image4" class="image4 hidden" src="#">
+          </figure>
+          <figure>
+            <img ref="image5" class="image5 hidden" src="#">
           </figure>
         </div>
       </div>
@@ -22,11 +38,12 @@
 export default {
   data() {
     return {
-      tlMaster: null,
+      slideMaster: null,
       audioOne: null,
-      sceneOne: [],
+      audioTwo: null,
+      audioThree: null,
+      audioFour: null,
       currentAudio: null,
-      audioDuration: null,
     }
   },
   computed: {
@@ -38,14 +55,9 @@ export default {
     },
   },
   watch: {
-    /**
-     * 
-     * These functions are dependent on the computed properties
-     * 
-     */
     resetReplayAll() { 
       // 1. stop the gsap slide timeline
-      this.tlMaster.kill()
+      this.slideMaster.kill()
       // 2. pause the current audio track
       this.pauseCurrentAudio()
       // 3. reset that track to beginning
@@ -55,7 +67,7 @@ export default {
       // 5. reset that track to beginning
       this.currentAudio.currentTime = 0
       // 6. start the gsap timeline from beginning
-      this.tlMaster.play(0)
+      this.slideMaster.play(0)
       // 7. start playing audio track
       this.playCurrentAudio()
       // 8. make sure pause button is shown
@@ -64,10 +76,10 @@ export default {
     },
     playAll() {
       if(this.$store.state.isPlaying == true) {
-        this.tlMaster.play()
+        this.slideMaster.play()
         this.playCurrentAudio()
       } else {
-        this.tlMaster.pause()
+        this.slideMaster.pause()
         this.pauseCurrentAudio()
       }
     }
@@ -76,11 +88,8 @@ export default {
     setCurrentAudio(src) {
       this.currentAudio = src
     },
-    getCurrentAudioDuration() {
-      const string = this.currentAudio.duration.toFixed(0)
-      this.audioDuration = parseInt(string, 10)
-      console.log('This audio is ' + this.audioDuration + ' seconds long')
-      return this.audioDuration
+    getCurrentAudioTime() {
+      console.log('This audio is ' + this.currentAudio.duration.toFixed(0) + ' seconds long')
     },
     playCurrentAudio() {
       this.currentAudio.play()
@@ -106,44 +115,41 @@ export default {
      * 
      */
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[1].name)
-    this.$store.commit('changePrevRoute', false)
-
+    this.$store.commit('changeNextRoute', false)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[1].name)
+    
     /**
      * 
-     * Populate $data with objects on this page. 
-     * Objects through $data will be reactive and scoped correctly.
+     * Update $data with the audio objects you are using in this file. 
+     * Audio object through $data will be reactive and scoped correctly.
+     * Set the currentAudio Track to the first track.
      * 
      */ 
     this.audioOne = new Audio(require('../assets/1.mp3'))
-    this.sceneOne = [this.$refs.htmlSceneOne]
-    // Set the currentAudio Track to the first track.
     this.setCurrentAudio(this.audioOne)
-
-
-    /**
-     * 
-     * GSAP recommends using functions to create each timeline section of your timelines
-     * 
-     */
-    const tlScenes = function(objRef, delay) {
-      const gsap = new TimelineMax();
-      gsap.add( TweenMax.from(objRef, 1, {opacity: 0, display: 'none'}));
-      gsap.add( TweenMax.to(objRef, 1, {opacity: 1, display: 'block', delay: delay}));
-      gsap.add( TweenMax.to(objRef, 1, {opacity: 0, display: 'none'}));
-      return gsap
+    
+    // GSAP recommends using functions to create each section of your timelines
+    const scene1 = function(obj) {
+      var image1 = new TimelineMax();
+      image1.add( TweenMax.to(obj, 1, {opacity: 1, display: 'block'}));
+      image1.add( TweenMax.to(obj, 1, {x: 2000, y: 100, delay: 1 }));
+      image1.add( TweenMax.to(obj, 1, {x: 0, opacity: 0, display: 'none'}));
+      return image1;
     }
-  
-    /**
-     * 
-     * Build a sequence out of all the timelines by placing each one in a parent timeline
-     * 
-     */ 
-    this.tlMaster = new TimelineMax({paused: true});
-    this.tlMaster.call(this.getCurrentAudioDuration, this, "elOne")
-    this.tlMaster.add(tlScenes([this.sceneOne], 19), 'elOne')
+    const scene2 = function(obj) {
+      var image1 = new TimelineMax();
+      image1.add( TweenMax.to(obj, 1, {opacity: 1, display: 'block'}));
+      image1.add( TweenMax.to(obj, 1, {x: 20, y: 100, delay: 1 }));
+      image1.add( TweenMax.to(obj, 1, {x: 0, opacity: 0, display: 'none'}));
+      return image1;
+    }
+
+    // build a sequence out of all the timelines by placing each one in a parent timeline
+    this.slideMaster = new TimelineMax({paused: true});
+    this.slideMaster.add(scene1(this.$refs.image1))
+    this.slideMaster.add(scene2(this.$refs.image2))
     // Callback on end moves to next route
-    this.tlMaster.addCallback(this.toNextRoute, '+=3')
+    this.slideMaster.addCallback(this.toNextRoute, '+=3')
 
     /**
      * 
@@ -158,7 +164,7 @@ export default {
     if (promise !== undefined) {
       promise.then(_ => {
         console.log('Autoplay is allowed')
-        this.tlMaster.play()
+        this.slideMaster.play()
         this.playCurrentAudio()
         this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = true)
       }).catch(error => {
@@ -172,7 +178,7 @@ export default {
      * Cleanup functions before moving to next page.
      * 
      */
-    this.tlMaster.kill()
+    this.slideMaster.kill()
     this.pauseCurrentAudio()
     this.$store.commit('changeIsPlaying', this.$store.state.isPlaying = false) // make sure isPlaying state is changed
   },
@@ -180,5 +186,31 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  div.columns {
+    position: relative;
+    height: 60vh;
+  }
+  div.column {
+    position: relative;
+    height: 50%;
+  }
+  figure.imageCanvas {
+    position: relative;
+  }
+  img {
+    position: absolute;
+    // display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
 
+    &.hidden {
+      opacity: 0;
+      display: none;
+    }
+  }
 </style>

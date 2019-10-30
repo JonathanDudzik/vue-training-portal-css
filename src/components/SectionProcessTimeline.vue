@@ -1,26 +1,35 @@
 <template>
   <section>
     <div ref="htmlSceneOne" class="container">
-      <div class="columns">
+      <div class="columns has-text-centered">
         <div class="column is-12">
-          <h1 class="title is-size-1-desktop">Learning Objectives</h1>
-          <h2 class="subtitle is-size-2-desktop">Participants will be able to:</h2>
-          
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column is-6 is-offset-1 is-size-4-desktop">
-          <ol>
-              <li>Explain what a Corrective Action Document is</li>
-              <li>State why a Corrective Action Document is necessary</li>
-              <li>Identify components of a Corrective Action Document</li>
-              <li>Answer key questions for completing a Corrective Action Document</li>
-          </ol>
-        </div>
-        <div class="column is-5">
-          <figure class="image">
-            <img src="../assets/checkboxes.jpg">
-          </figure>
+          <h1 class="title is-size-1-desktop">How does the process work?</h1>
+          <div class="timeline is-centered">
+            <header class="timeline-header">
+                <span class="tag is-large is-primary is-size-3-desktop">Compliance Review</span>
+            </header>
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content"></div>
+              </div>
+            <header class="timeline-header">
+                <span class="tag is-large is-primary is-size-3-desktop">Program Violation(s)</span>
+            </header>
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content"></div>
+              </div>
+            <header class="timeline-header">
+                <span class="tag is-large is-primary is-size-3-desktop">Complete Corrective Action Document</span>
+            </header>
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content"></div>
+              </div>
+            <header class="timeline-header">
+                <span class="tag is-large is-primary is-size-3-desktop">Submit Corrective Action Document</span>
+            </header>
+          </div>
         </div>
       </div>
     </div>
@@ -115,8 +124,8 @@ export default {
      * 
      */
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[2].name)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[0].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[3].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[3].name)
 
     /**
      * 
@@ -124,7 +133,7 @@ export default {
      * Objects through $data will be reactive and scoped correctly.
      * 
      */ 
-    this.audioOne = new Audio(require('../assets/2.mp3'))
+    this.audioOne = new Audio(require('../assets/5.mp3'))
     this.sceneOne = [this.$refs.htmlSceneOne]
     // Set the currentAudio Track to the first track.
     this.setCurrentAudio(this.audioOne)

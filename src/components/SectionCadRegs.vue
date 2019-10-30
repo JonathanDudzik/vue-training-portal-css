@@ -3,23 +3,20 @@
     <div ref="htmlSceneOne" class="container">
       <div class="columns">
         <div class="column is-12">
-          <h1 class="title is-size-1-desktop">Learning Objectives</h1>
-          <h2 class="subtitle is-size-2-desktop">Participants will be able to:</h2>
-          
+          <h1 class="title is-size-1-desktop">Why Complete a Corrective Action Document?</h1>
+          <h2 class="subtitle is-size-2-desktop">Institutions complete a Corrective Action Document because:</h2>
         </div>
       </div>
-      <div class="columns">
+      <div class="columns is-vcentered">
         <div class="column is-6 is-offset-1 is-size-4-desktop">
           <ol>
-              <li>Explain what a Corrective Action Document is</li>
-              <li>State why a Corrective Action Document is necessary</li>
-              <li>Identify components of a Corrective Action Document</li>
-              <li>Answer key questions for completing a Corrective Action Document</li>
+              <li>It is required by federal regulation -7 CFR 226.6 (c)</li>
+              <li>To describe how they will correct program violations</li>
           </ol>
         </div>
-        <div class="column is-5">
+        <div class="column is-4">
           <figure class="image">
-            <img src="../assets/checkboxes.jpg">
+            <img src="../assets/regulations-book.jpg">
           </figure>
         </div>
       </div>
@@ -115,8 +112,8 @@ export default {
      * 
      */
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[2].name)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[0].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[4].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[2].name)
 
     /**
      * 
@@ -124,7 +121,7 @@ export default {
      * Objects through $data will be reactive and scoped correctly.
      * 
      */ 
-    this.audioOne = new Audio(require('../assets/2.mp3'))
+    this.audioOne = new Audio(require('../assets/4.mp3'))
     this.sceneOne = [this.$refs.htmlSceneOne]
     // Set the currentAudio Track to the first track.
     this.setCurrentAudio(this.audioOne)
