@@ -1,34 +1,33 @@
 <template>
-<div class="my-nav-bar">
-    <nav class="level my-nav-bar--top is-mobile has-background-primary is-marginless">
-      <div class="level-left">
-        <div class="level-item">
-          <img src="../assets/logo.png" alt="logo">
+  <div class="my-nav-bar">
+      <nav class="level my-nav-bar--top is-mobile has-background-primary is-marginless">
+        <div class="level-left">
+          <div class="level-item">
+            <img src="../assets/logo.png" alt="logo">
+          </div>
         </div>
-      </div>
-      <div class="level-right is-size-1 has-text-white">
-        <div class="level-item">
-          <BtnMenuCourse/>
+        <div class="level-right is-size-1 has-text-white">
+          <div class="level-item">
+            <BtnMenuCourse/>
+          </div>
         </div>
-      </div>
-    </nav>
-    
-    <nav class="level my-nav-bar--bottom has-text-light is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-            <p class="is-hidden-mobile" style="padding-right: 10px;">{{ this.$store.state.courseName }}</p>
-            <p class="is-hidden-mobile">/</p>
-            <p class="" style="padding-left: 10px;">{{ this.$store.state.currentRoute }}</p>
+      </nav>
+      
+      <nav class="level my-nav-bar--bottom has-text-light is-mobile">
+        <div class="level-left">
+          <div class="level-item">
+              <p class="is-hidden-mobile" style="padding-right: 10px;">{{ this.$store.state.courseName }}</p>
+              <p class="is-hidden-mobile">/</p>
+              <p class="" style="padding-left: 10px;">{{ this.$store.state.currentRoute }}</p>
+          </div>
         </div>
-      </div>
-      <div class="level-right is-size-4">
-        <!-- <div class="level-item"> tag included in Btn components-->
-        <BtnPlayPause/>
-        <BtnResetReplay/>
-        <BtnCourseHelp/>
-      </div>
-    </nav>
-
+        <div class="level-right is-size-4">
+          <!-- <div class="level-item"> tag included in Btn components-->
+          <BtnPlayPause/>
+          <BtnResetReplay/>
+          <BtnCourseHelp/>
+        </div>
+      </nav>
   </div>
 </template>
 
