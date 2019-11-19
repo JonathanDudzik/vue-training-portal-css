@@ -7,10 +7,8 @@ export default new Vuex.Store({
   state: {
     // names used throughout portal
     courseName: "Child Income Eligibility",
-    // this is the array id that is used in all the sections
-    // to navigate the route's children
+    // points to the routes array that holds the /course route to navigate the route's children
     courseRoute: 2,
-    
     // functional states 
     genericEventCounter: 0,
     currentRoute: '',

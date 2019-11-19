@@ -112,8 +112,8 @@ export default {
      * 
      */
     this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
-    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[4].name)
-    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[2].name)
+    this.$store.commit('changeNextRoute', this.$router.options.routes[this.$store.state.courseRoute].children[5].name)
+    this.$store.commit('changePrevRoute', this.$router.options.routes[this.$store.state.courseRoute].children[3].name)
 
     /**
      * 

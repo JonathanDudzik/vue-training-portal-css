@@ -25,7 +25,6 @@
 
 <script>
 const tween = new TimelineMax()
-
 export default {
   computed: {
       // nextRoute and prevRoute values set in current routed view
