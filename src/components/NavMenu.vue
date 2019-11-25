@@ -12,7 +12,7 @@
                 </div>
             </div>
         </nav>
-        <div class="hero-body">
+        <div class="hero-body my-hero-body">
             <div class="container">
                 <aside class="menu">
                     <ul class="menu-list">
@@ -70,10 +70,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .my-nav-bar{
+    .my-nav-bar {
         position: fixed;
         top: 0%;
         width: 100%;
         padding: 10px 30px 10px 30px;
+    }
+    .my-hero-body {
+        margin-top: 10%;
     }
 </style>
