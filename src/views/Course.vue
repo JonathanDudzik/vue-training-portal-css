@@ -1,6 +1,7 @@
 <template>
     <div>
-        <NavBar/>
+        <NavBarTop/>
+        <NavBarBottom/>
         <section class="section">
             <div class="columns">
                 <div class="column is-10 is-offset-1  margin-content-top margin-content-bottom">
@@ -11,19 +12,18 @@
                 </div>
             </div> 
         </section>
-        <NavFooter/>
     </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
-import NavFooter from '@/components/NavFooter'
+import NavBarBottom from '@/components/NavBarBottom'
+import NavBarTop from '@/components/NavBarTop'
 import ModalHelp from '@/components/ModalHelp'
 
 export default {
     components: {
-        "NavBar": NavBar,
-        "NavFooter": NavFooter,
+        "NavBarBottom": NavBarBottom,
+        "NavBarTop": NavBarTop,
         "ModalHelp": ModalHelp,
     },
     updated() {
