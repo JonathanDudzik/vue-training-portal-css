@@ -9,8 +9,8 @@ export default {
     // Value must must match name of the component you want to render in the modal for that section
     pages: {
         Listen: "Listen",
-        Watch: "Video",
-        Read: "Text",
-        Interactive: "Mixed",
+        Watch: "Watch",
+        Read: "Read",
+        Interactive: "Interactive",
     }
 }

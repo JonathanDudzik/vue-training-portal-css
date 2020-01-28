@@ -8,15 +8,22 @@
 
 <script>
 import CourseTemplate from '../test/CourseTemplate'
-// write a function here to load the name of the comonent!
-const name = CourseTemplate.pages.Listen
 
 export default {
-    components: {
-        'Listen': () => import(`../components/${name}.vue`)
-    },
+    components: Object.keys(CourseTemplate.pages).reduce((accumulator, currentVal) => { return Object.assign(accumulator, { [currentVal]: () => import(`../components/${currentVal}.vue`) }) }, {}),
     mounted() {
-        console.log(CourseTemplate);
+        console.log(this.$options.components)
+        // const testObject = {   
+        //     components: 
+        //     Object.keys(CourseTemplate.pages)
+        //     .reduce(
+        //         // Begin callback function
+        //         (accumulator, currentVal) => { return Object.assign(accumulator, { [currentVal]: () => import(CourseTemplate.pages[currentVal]) }) },
+        //         // Begin initial value
+        //         {}
+        //     )
+        // }
+        // console.log(testObject)
     },
     data() {
         return {
@@ -28,7 +35,7 @@ export default {
         currentModal: function() {
             const sectionSelector = this.$store.state.selectedSection
             const mediumSelector = this.$store.state.selectedMedium
-            return(CourseTemplate.pages[mediumSelector])
+            return(CourseTemplate.pages[mediumSelector].toString())
         }
     },
     methods: {
