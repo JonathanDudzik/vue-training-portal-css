@@ -7,7 +7,7 @@
               <aside>
                   <ul>
                     <!-- The use of this prop makes sure that each MenuItem knows its own currentSection -->
-                    <MenuItem v-for="item in CourseTemplate.sections" v-bind:currentSection="item"/>
+                    <MenuItem v-for="item in CourseTemplate.sections" v-bind:currentSection="item" v-bind:key="item"/>
                   </ul>
               </aside>
           </div>
@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import CourseTemplate from '../test/CourseTemplate'
-
 import NavBarTop from '@/components/NavBarTop'
 import MenuItem from '@/components/MenuItem'
 import MediumModal from '@/components/MediumModal'
@@ -30,7 +28,7 @@ export default {
   },
   data() {
     return {
-      CourseTemplate: CourseTemplate
+      CourseTemplate: this.$CourseTemplate
     }
   }
 } 

@@ -9,7 +9,7 @@
                     <!-- The logic for mediumSelector in being decouple from the child component -->
                     <!-- MediumSelector component is only worried about the rendering of all the buttons -->
                     <!-- This click on these medium buttons determines the section and medium -->
-                    <MediumSelector v-for="item in CourseTemplate[this.currentSection]">
+                    <MediumSelector v-for="item in CourseTemplate[this.currentSection]" v-bind:key="item">
                         <button @click="mediumSelector(item)">{{ item }} in the {{ currentSection }} section</button>
                     </MediumSelector>
                   </ul>
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import CourseTemplate from '../test/CourseTemplate'
 import MediumSelector from '@/components/MediumSelector'
 
 export default {
@@ -32,13 +31,13 @@ export default {
     },
     data() {
         return {
-        CourseTemplate: CourseTemplate
+            CourseTemplate: this.$CourseTemplate
         }
     },
     methods: {
         mediumSelector(medium) {
             this.$store.state.selectedSection = this.currentSection
-            this.$store.state.selectedMedium = CourseTemplate.pages[medium]
+            this.$store.state.selectedMedium = this.$CourseTemplate.pages[medium]
             this.$store.state.showMediumModal = true
         }
     }

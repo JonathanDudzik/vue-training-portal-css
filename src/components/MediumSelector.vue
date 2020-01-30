@@ -7,14 +7,6 @@
 </template>
 
 <script>
-import CourseTemplate from '../test/CourseTemplate'
-
-export default {
-    data() {
-        return {
-            CourseTemplate: CourseTemplate
-        }
-    }
-}
+export default {}
 </script>
 
