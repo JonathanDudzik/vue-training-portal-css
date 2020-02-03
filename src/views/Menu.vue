@@ -1,6 +1,7 @@
 <template>
     <section>
       <NavBarTop/>
+      <OptionMenu/>
       <MediumModal v-if="$store.state.showMediumModal === true"/>
       <div>
           <div>
@@ -17,12 +18,14 @@
 
 <script>
 import NavBarTop from '@/components/NavBarTop'
+import OptionMenu from '@/components/OptionMenu'
 import MenuItem from '@/components/MenuItem'
 import MediumModal from '@/components/MediumModal'
 
 export default {
   components: {
     "NavBarTop": NavBarTop,
+    "OptionMenu": OptionMenu,
     "MenuItem": MenuItem,
     "MediumModal": MediumModal
   },
