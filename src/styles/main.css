@@ -6,19 +6,16 @@
     --color-black: #000000;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
 *,
 *::before,
 *::after {
+    margin: 0;
+    padding: 0;
     box-sizing: inherit;
 }
 
 html {
-    box-sizing: border-box;
+    /* Changing the font size here will change the sizing of all rem units */
     font-size: 62.5%; /* 1rem = 10px, 10px/16px = 62.5 */
 }
 
@@ -29,4 +26,6 @@ body {
     color: var(--color-black);
     background-color: var(--color-white);
     min-height: 100vh;
+    /* Box sizing is inherited above */
+    box-sizing: border-box;
 }
