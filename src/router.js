@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Menu from './router-views/Menu'
+import Menu from './router-views/LandingPage'
 
 Vue.use(Router)
 

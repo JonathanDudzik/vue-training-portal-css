@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>I am a dynamically rendered audio component with only html markup!</p>
+        <p>Listen</p>
     </div>
 </template>
 

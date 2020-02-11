@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>I am a dynamically rendered Video component with only html markup!</p>
+        <p>Watch</p>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>I am a dynamically rendered Text component with only html markup!</p>
+        <p>Read</p>
     </div>
 </template>
 

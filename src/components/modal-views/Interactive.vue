@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>I am a dynamically rendered interactive component with only html markup!</p>
+        <p>Interative</p>
     </div>
 </template>
 

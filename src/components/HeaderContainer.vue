@@ -3,15 +3,27 @@
     <div class="logo-container">
       <img class="logo" src="../assets/logo.png" alt="logo">
     </div>
+
     <div class="course-name-container">
       <h1>{{ courseName }}</h1>
     </div>
-    <div class="help-button-container">
-      <svg class="help-icon">
-        <use xlink:href="../assets/sprite.svg#icon-clock"></use>
-      </svg>
-      <p>Help</p>
-      <button @click="mediumSelector('Help')">CLICK ME</button>
+
+    <div class="icon-row-container">
+
+      <div @click="mediumSelector('Help')" class="icon-column-container">
+        <svg class="icon">
+          <use xlink:href="../assets/sprite.svg#icon-help"></use>
+        </svg>
+        <p>Help</p>
+      </div>
+
+      <div @click="mediumSelector('Settings')" class="icon-column-container">
+        <svg class="icon">
+          <use xlink:href="../assets/sprite.svg#icon-cog"></use>
+        </svg>
+        <p>Options</p>
+      </div>
+
     </div>
   </div>
 </template>
@@ -20,13 +32,11 @@
   export default {
     data() {
       return {
-        courseName: this.$store.state.courseName,
-        CourseTemplate: this.$CourseTemplate
+        courseName: this.$store.state.courseName
       }
     },
     methods: {
       mediumSelector(medium) {
-          // this.$store.state.selectedSection = this.$CourseTemplate[0]
           this.$store.state.selectedModal = medium
           this.$store.state.showMediumModal = true
       }
@@ -68,7 +78,7 @@
   justify-content: center;
 
 }
-.help-button-container {
+.icon-row-container {
 
   /* flex item styles */
   flex-grow: 0; 
@@ -79,6 +89,7 @@
 
   /* flex container styles */
   display: flex;
+  /* flex-direction: column; */
   align-self: stretch;
   align-items: center;
 
@@ -86,17 +97,35 @@
   cursor: pointer;
 
 }
-.logo {
+.icon-column-container {
 
-  height: 5rem;
-  margin-left: 3rem;
+  /* flex item styles */
+  flex-grow: 0; 
+  flex-shrink: 0; 
+  flex-basis: auto;
+  align-self: stretch;
+  align-items: center;
+
+  /* flex container styles */
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
+
+  margin-right: .5rem;
 
 }
-.help-icon {
+.logo {
 
-  height: 2rem;
-  width: 2rem;
-  margin-right: 1rem;
+  height: 6rem;
+  margin-left: 2rem;
+
+}
+.icon {
+
+  height: 3rem;
+  width: 3rem;
+  margin-top: 1rem;
 
 }
 </style>

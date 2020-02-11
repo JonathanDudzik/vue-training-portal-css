@@ -7,6 +7,7 @@
 
 <script>
 import Help from '@/components/modal-views/Help'
+import Settings from '@/components/modal-views/Settings'
 import Listen from '@/components/modal-views/Listen'
 import Watch from '@/components/modal-views/Watch'
 import Read from '@/components/modal-views/Read'
@@ -16,6 +17,7 @@ export default {
     // The below function must iterate through course template mapping array of all media component names to work with
     // components: Object.keys(CourseTemplate[0].media).reduce((accumulator, currentVal) => { return Object.assign(accumulator, { [currentVal]: () => import(`../components/${currentVal}.vue`) }) }, {}),
     components: {
+        "Settings": Settings,
         "Help": Help,
         "Listen": Listen,
         "Watch": Watch,
