@@ -1,5 +1,4 @@
 <template>
-    <section>
       <div class="grid-container">
           <!-- The use of this prop makes sure that each SectionsSelector knows its own currentSection -->
           <ContentSelector
@@ -10,7 +9,6 @@
             v-bind:class="'card' + '-' + section.name">
           </ContentSelector>
       </div>
-    </section>
 </template>
 
 <script>
@@ -23,22 +21,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     
+    /* grid containers cannot have scoped css! */
     .grid-container {
-
-
         background-color:khaki;
-        width: 100%;
-        height: 100%;
-        padding-top: 10%;
+
+        /* grid item styles */
+        grid-row: 2/3;
+        grid-column: 1/2;
         
-        /* grid styles */
+        /* grid contianer styles */
         display: grid;
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow: row;
+        grid-auto-rows: auto;
         grid-row-gap: 20px;
         grid-column-gap: 20px;
+        align-items: center;
+        justify-items: center;
     }
 
 </style>

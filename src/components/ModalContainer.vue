@@ -1,7 +1,8 @@
 <template>
-    <div class='testClass'>
+    <div class="background">
         <component v-bind:is="currentModal"/>
-        <button @click="closeModal()">CLOSE MODAL</button>
+        <button ref="closeModal" @click="closeModal()">CLOSE MODAL</button>
+        <button @click="editPoints()">Add one point</button>
     </div>
 </template>
 
@@ -27,23 +28,43 @@ export default {
     computed: {
         currentModal: function() {
             return(this.$store.state.selectedModal.toString())
+        },
+        dynamicWatched() {
+            return this.$store.state.currentPoints
+        }
+    },
+    watch: {
+        dynamicWatched() {
+            console.log(`Hey! you have ${this.$store.state.currentPoints} points!!`)
         }
     },
     methods: {
         closeModal() {
             this.$store.state.showMediumModal = false
+        },
+        editPoints(){
+            this.$store.state.currentPoints += 1
         }
+    },
+    mounted(){
+        const { closeModal } = this.$refs
+        const timeline = new TimelineLite()
+        timeline.from(closeModal, 1, { scale: .0, rotation: 90 })
     }
 }
 </script>
 
 <style>
-.testClass {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: aquamarine;
-    height: 30%;
-    width: 30%;
-}
+
+    .background{
+        background-color: rgba(189,115,115,1);
+        height: 100%;
+        width: 100%;
+        z-index: 1000;
+
+        /* grid item styles */
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+
+    }
 </style>

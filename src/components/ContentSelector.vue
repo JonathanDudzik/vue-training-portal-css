@@ -1,11 +1,9 @@
 <template>
-    <div class="grid container-two">
-    <section v-bind:style="{backgroundColor: currentSection.color}">
+    <div v-bind:style="{backgroundColor: currentSection.color}">
         <h1>{{ currentSection.name }} {{ currentSection.index }}</h1>
         <div v-for="(mediaOption, index) in currentSection.media" v-bind:key="index">
             <button @click="mediumSelector(mediaOption)">{{ mediaOption }}</button>
         </div>
-    </section>
     </div>
 </template>
 
@@ -28,10 +26,10 @@ export default {
 
     .card {
         border-radius: 5px;
-        height: 15rem;
-        width: 15rem;
+        height: 12rem;
+        width: 12rem;
     }
-
+/* 
     .card-One {
 
     }
@@ -49,6 +47,6 @@ export default {
     }
     .card-Six {
        
-    }
+    } */
 
 </style>>

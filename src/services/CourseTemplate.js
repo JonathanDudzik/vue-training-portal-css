@@ -52,5 +52,5 @@ export default [
         },
         index: 6,
         color: 'brown'
-    },
+    }
 ]

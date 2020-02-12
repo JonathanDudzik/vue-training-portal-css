@@ -10,5 +10,7 @@ export default new Vuex.Store({
     selectedMedium: undefined,
     selectedModal: undefined,
     showMediumModal: false, // Default/starting state of showMediumModal MUST be false
+    currentPoints: 0,
+    visitedContent: [],
   }
 })

@@ -47,6 +47,10 @@
 <style scoped>
 .nav-bar-container {
 
+  /* grid item styles */
+  grid-row: 1 / 2;
+  grid-column: 1 / -1;
+
   /* flex container styles */
   display: flex;
   justify-content: space-between;
@@ -74,7 +78,6 @@
 
   /* flex container styles */
   display: flex;
-  align-items: center;
   justify-content: center;
 
 }
