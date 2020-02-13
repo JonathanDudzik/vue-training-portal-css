@@ -26,8 +26,9 @@ export default {
 
     .card {
         border-radius: 5px;
-        height: 12rem;
-        width: 12rem;
+        margin: 1rem;
+        height: 18rem;
+        width: 18rem;
     }
 /* 
     .card-One {

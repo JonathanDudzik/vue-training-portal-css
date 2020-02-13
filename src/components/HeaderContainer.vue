@@ -8,7 +8,7 @@
       <h1>{{ courseName }}</h1>
     </div>
 
-    <div class="icon-row-container">
+    <div class="icon-text-container">
 
       <div @click="mediumSelector('Help')" class="icon-column-container">
         <svg class="icon">
@@ -59,76 +59,42 @@
 }
 .logo-container {
 
-  /* flex item styles */
-  flex-grow: 0; 
-  flex-shrink: 0; 
-  flex-basis: auto;
-  align-self: stretch;
-  align-items: center;
-  
+  margin-left: 2rem;
+
 }
 .course-name-container {
 
-  /* flex item styles */
-  flex-grow: 0; 
-  flex-shrink: 0; 
-  flex-basis: 50%;
-  align-self: stretch;
-  align-items: center;
-
-  /* flex container styles */
-  display: flex;
-  justify-content: center;
+  margin: 0 1rem;
 
 }
-.icon-row-container {
+.icon-text-container {
 
-  /* flex item styles */
-  flex-grow: 0; 
-  flex-shrink: 0; 
-  flex-basis: auto;
-  align-self: stretch;
-  align-items: center;
-
+  margin-right: 2rem;
+  cursor: pointer;
+  
   /* flex container styles */
   display: flex;
-  /* flex-direction: column; */
-  align-self: stretch;
-  align-items: center;
-
-  padding: 0 2rem;
-  cursor: pointer;
 
 }
 .icon-column-container {
 
-  /* flex item styles */
-  flex-grow: 0; 
-  flex-shrink: 0; 
-  flex-basis: auto;
-  align-self: stretch;
-  align-items: center;
+  margin-right: 1rem;
 
   /* flex container styles */
   display: flex;
   flex-direction: column;
-  align-self: stretch;
   align-items: center;
-
-  margin-right: .5rem;
 
 }
 .logo {
 
   height: 6rem;
-  margin-left: 2rem;
 
 }
 .icon {
 
   height: 3rem;
   width: 3rem;
-  margin-top: 1rem;
 
 }
 </style>
