@@ -7,12 +7,12 @@
       <!-- End modal component -->
 
       <!-- Begin Main page -->
-      <main class="landing-page-container" v-if="$store.state.showModal === false">
+      <main class="main-grid-container" v-if="$store.state.showModal === false">
         <HeaderContainer/>
         <StateDisplay/>
         <ContentSelector
-          class="card"
-          v-bind:class="'card' + '-' + section.index"
+          class="card-grid-item"
+          v-bind:class="'card-grid-item' + '-' + section.index"
           v-for="section in $store.state.courseTemplate"
           v-bind:currentSection="section"
           v-bind:key="section.index">
@@ -51,7 +51,7 @@ export default {
   opacity: 0;
 }
 
-.landing-page-container {
+.main-grid-container {
   /* background-color: #eee; */
   width: 90vw;
   padding: 1.5rem;

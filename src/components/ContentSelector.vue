@@ -1,17 +1,25 @@
 <template>
-  <div class="grid-container">
-    <h1 class="upper-grid-item">{{currentSection.index}} {{ currentSection.title}}</h1>
-    <div class="center-grid-item">
-      <div v-for="(mediaOption, index) in currentSection.media" v-bind:key="index" @click="mediumSelector(mediaOption.name)">
-        <svg class="center-grid-btn">
+  <div class="card-subgrid-container">
+
+    <div class="title-grid-item">
+      <h1 >{{ currentSection.index }} {{ currentSection.title }}</h1>
+    </div>
+
+    <div class="selector-grid-item" v-for="(mediaOption, index) in currentSection.media" v-bind:key="index" v-bind:class="'selector-grid-item' + '-' + index" @click="mediumSelector(mediaOption.name)">
+      <div class="button">
+        <svg class="media">
           <use v-bind:href="mediaOption.icon"></use>
         </svg>
-        <svg class="test-svg">
-          <use v-if="mediaOption.complete" href="sprite.svg#icon-check"></use>
+        <svg class="check" v-if="mediaOption.complete">
+          <use href="sprite.svg#icon-check"></use>
         </svg>
       </div>
     </div>
-    <h1 v-bind:class="'lower-grid-item' + '-' + currentSection.index" class="lower-grid-item">{{ currentSection.discription }}</h1>
+  
+    <div class="discription-grid-item" v-bind:class="'discription-grid-item' + '-' + currentSection.index">
+      <h1>{{ currentSection.discription }}</h1>
+    </div>
+
   </div>
 </template>
 
@@ -19,11 +27,6 @@
 export default {
   props: {
     'currentSection': Object
-  },
-  data() {
-    return {
-      complete: false
-    }
   },
   methods: {
     mediumSelector(medium) {
@@ -35,72 +38,77 @@ export default {
 </script>
 
 <style scoped>
-.test-svg {
-  width: 2rem;
-  height: 2rem;
-}
-
-.center-grid-btn {
-  display: block;
-  box-shadow: var(--level-1);
-  margin-left: 0.5rem;
-  height: 3.5rem;
-  width: 3.5rem;
-  padding: 0.5rem;
-  border-radius: 50%;
-  background-color: orange;
-}
-
-.card {
+.card-grid-item {
   box-shadow: var(--level-3);
   border-radius: 5px;
   width: 100%;
   height: 100%;
   padding: 3px;
+}
+
+.card-grid-item-1 {
+  background-color: cornflowerblue;
+}
+
+.card-grid-item-2 {
+  background-color: blueviolet;
+}
+
+.card-subgrid-container {
+  width: 100%;
+  height: 100%;
 
   /* grid container rules */
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr 4fr;
-  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 2fr 2fr 2fr 10fr;   /* 19fr total */
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.upper-grid-item {
-  /* grid item rules */
+.title-grid-item {
   grid-row: 1 / 3;
   grid-column: 1 / -1;
+
+  border-bottom: 2px black solid;
 }
 
-.upper-right-grid-item {
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
-  justify-self: end;
-}
-
-.center-grid-item {
-  /* grid item rules */
+.selector-grid-item {
   grid-row: 2 / 4;
-  grid-column: 1 / -1;
-  z-index: 1;
+}
 
-  /* flex container rules*/
+.selector-grid-item .button {
+  box-shadow: var(--level-1);
+  height: 4rem;
+  width: 4rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: orange;
+
+  /* flexbox rules - can you do more with flexbox here to get rid of media an check classes??? */
   display: flex;
-  justify-content: left;
-  align-items: center;
 }
 
-.lower-grid-item {
-  border-top: solid 2px black;
-
-  /* grid item rules */
-  grid-row: 3 / 5;
-  grid-column: 1 / -1;
+.selector-grid-item-0 {
+  grid-column: 1 / span 1;
 }
 
-.lower-grid-item-1 {
-  background-color: blueviolet;
+.selector-grid-item-1 {
+  grid-column: 2 / span 1;
 }
 
-.card-2 {
-  background-color: blueviolet;
+.selector-grid-item-2 {
+  grid-column: 3 / span 1;
+}
+
+.discription-grid-item {
+  grid-row: 4 / 5;
+  grid-column: 1 / -1
+}
+
+.discription-grid-item-1 {
+  background-color: blue;
+}
+
+.discription-grid-item-2 {
+  background-color: red;
 }
 </style>>
