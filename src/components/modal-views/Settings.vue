@@ -3,7 +3,7 @@
     <div>
         <div class="option-block">
             <svg class="option-icon">
-                <use xlink:href="../../assets/sprite.svg#icon-add-to-list"></use>
+                <use xlink:href="../../../public/sprite.svg#icon-add-to-list"></use>
             </svg>
             <p>Medium</p>
         </div>
@@ -12,7 +12,7 @@
     <div>
         <div class="option-block">
             <svg class="option-icon">
-                <use xlink:href="../../assets/sprite.svg#icon-clock"></use>
+                <use xlink:href="../../../public/sprite.svg#icon-clock"></use>
             </svg>
             <p>1.0x</p>
         </div>
@@ -21,7 +21,7 @@
     <div>
         <div class="option-block">
             <svg class="option-icon">
-                <use xlink:href="../../assets/sprite.svg#icon-controller-fast-forward"></use>
+                <use xlink:href="../../../public/sprite.svg#icon-controller-fast-forward"></use>
             </svg>
             <p>Auto/Manual</p>
         </div>
