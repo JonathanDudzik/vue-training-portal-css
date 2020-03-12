@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Interative</p>
+        <p>Interative bull shit</p>
     </div>
 </template>
 

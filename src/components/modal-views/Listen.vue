@@ -1,9 +1,18 @@
 <template>
     <div>
-        <p>Listen</p>
+      <p>Listen</p>
+      <div @click="mediumSelector(['MainMenu'])">
+        clickME
+      </div>
     </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    mediumSelector(componentList) {
+      this.$store.state.viewComponentList = componentList
+    }
+  }
+}
 </script>

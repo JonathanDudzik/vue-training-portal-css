@@ -4,8 +4,9 @@
     --color-primary-dark: #3e3e3b;
     --color-secondary-dark: #4c586f;
     --color-primary-light: #ebeced;
-    --accent-primary: #a2aab0;
-    --accent-secondary: #cbc5c1;
+    --accent-primary: #f8a8c5;
+    --accent-secondary: #fbd160;
+    --accent-tertiary: #e44650;
     --color-white: #FFFFFF;
     --color-black: #000000;
 
@@ -39,4 +40,5 @@ body {
     background-color: var(--color-white);
     /* Box sizing is inherited above */
     box-sizing: border-box;
+    margin: 2rem 2rem;
 }

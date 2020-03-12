@@ -5,63 +5,65 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    courseName: "Basic Course Example",
-    selectedModal: undefined,
-    showModal: false, // Default/starting state of showMediumModal MUST be false
-    currentPoints: 0,
-    courseTemplate: [
+    // Course state
+    courseName: 'Basic Course Example',
+    viewComponentList: ['MainHeader'],
+    iconReference: {
+      arrow: 'sprite.svg#icon-new',
+      check: 'sprite.svg#icon-check',
+    },
+    
+    // Lesson state
+    lessonTemplate: [
       {
-        title: "Title One",
-        discription: "one",
+        title: "Searching for Sasquatches",
         index: 1,
-        media: [
+        partArray: [
           {
-              name: "Listen",
-              icon: "sprite.svg#icon-mic",
-              complete: false
+            partName: "Listen",
+            partComponentList: ['MainHeader','Listen'],
+            complete: true
           },
           {
-              name: "Watch",
-              icon: "sprite.svg#icon-video",
-              complete: true
+            partName: "Listen II",
+            partComponentList: ['Listen', 'MainHeader'],
+            complete: false
           }
         ]
       },
       {
-        title: "Title Two",
-        discription: "Two",
+        title: "The Shooting of Ginger Goodwin",
         index: 2,
-        media: [
+        partArray: [
           {
-              name: "Listen",
-              icon: "sprite.svg#icon-mic",
-              complete: false
+            partName: "Read",
+            partComponentList: ['Read'],
+            complete: true
           },
           {
-              name: "Read",
-              icon: "sprite.svg#icon-open-book",
-              complete: false
+            partName: "Read II",
+            partComponentList: ['Read'],
+            complete: false
           }
         ]
       },
       {
-        title: "",
-        discription: "Three",
+        title: "The Gentleman Bandit",
         index: 3,
-        media: [
+        partArray: [
           {
-            name: "Listen",
-            icon: "sprite.svg#icon-mic",
-            complete: true
+            partName: "Listen and Read",
+            partComponentList: ['Read', 'Listen'],
+            complete: false
           },
           {
-            name: "Watch",
-            icon: "sprite.svg#icon-video",
-            complete: true
+            partName: "Activity",
+            partComponentList: ['Read', 'Listen'],
+            complete: false
           },
           {
-            name: "Interactive",
-            icon: "sprite.svg#icon-new",
+            partName: "Resources",
+            partComponentList: ['Read','Interactive'],
             complete: false
           }
         ]
