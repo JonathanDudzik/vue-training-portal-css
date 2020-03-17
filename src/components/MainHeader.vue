@@ -42,6 +42,9 @@ export default {
   grid-template-columns: 1fr min-content;
 }
 
+/***********************************
+Begin logo styles
+************************************/
 .logo-container {
   grid-row: 1 / 2;
   grid-column: 1 / -1;
@@ -53,6 +56,9 @@ export default {
   width: 4rem;
 }
 
+/***********************************
+Begin background image styles
+************************************/
 .background-image {
   position: relative;
   box-shadow: var(--level-1 );
@@ -68,6 +74,9 @@ export default {
   grid-column: 1 / 5;
 }
 
+/***********************************
+Begin course title styles
+************************************/
 .course-title-container {
   padding: 2rem 3rem;
   background-color: grey;
@@ -82,6 +91,9 @@ export default {
   color: var(--color-white)
 }
 
+/***********************************
+Begin callout styles
+************************************/
 .callout-container {
   width: 50%;
   padding: 1rem 2rem;
